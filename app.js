@@ -14,7 +14,7 @@ let state = {
 const defaultLocale = 'en';
 let currentLocale = localStorage.getItem('khis_locale') || defaultLocale;
 let adminSession = JSON.parse(sessionStorage.getItem('khis_admin_session')) || null;
-let adminRole = 'Super Admin'; // Default simulated tier: 'Super Admin' or 'Content Editor'
+let adminRole = adminSession ? adminSession.role : 'Super Admin';
 let activeNoticeFilter = 'all';
 let activeGalleryFilter = 'all';
 let currentCalendarDate = new Date(2026, 5, 1); // Seed to June 2026 as per mock events
@@ -338,7 +338,9 @@ function handleRouteChange() {
   // Active navigation link tracking
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
-    const route = link.getAttribute('href').replace('#/', '');
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('javascript:')) return;
+    const route = href.replace('#/', '');
     if (route === matchedRoute) {
       link.classList.add('active');
     } else {
@@ -346,32 +348,74 @@ function handleRouteChange() {
     }
   });
 
+  // Set active states on dropdown triggers based on sub-routes
+  const dropdownAbout = document.getElementById('dropdownAboutTrigger');
+  if (dropdownAbout) {
+    if (['about', 'director'].includes(matchedRoute)) {
+      dropdownAbout.classList.add('active');
+    } else {
+      dropdownAbout.classList.remove('active');
+    }
+  }
+
+  const dropdownAcademics = document.getElementById('dropdownAcademicsTrigger');
+  if (dropdownAcademics) {
+    if (['academics', 'results', 'fees-schedule', 'faculties-list'].includes(matchedRoute)) {
+      dropdownAcademics.classList.add('active');
+    } else {
+      dropdownAcademics.classList.remove('active');
+    }
+  }
+
   const publicScroller = document.getElementById('public-scroller');
   const adminView = document.getElementById('view-admin');
   const admissionsView = document.getElementById('view-admissions');
+  const facilitiesView = document.getElementById('view-facilities');
+  const hostelView = document.getElementById('view-hostel');
 
   if (matchedRoute === 'admin') {
-    // Hide public sections & admissions, show admin
     if (publicScroller) publicScroller.classList.remove('active');
     if (admissionsView) admissionsView.classList.remove('active');
+    if (facilitiesView) facilitiesView.classList.remove('active');
+    if (hostelView) hostelView.classList.remove('active');
     if (adminView) {
       adminView.classList.add('active');
       renderAdminDashboardView();
     }
     window.scrollTo({ top: 0 });
   } else if (matchedRoute === 'admissions') {
-    // Show admissions, hide public sections & admin
     if (publicScroller) publicScroller.classList.remove('active');
     if (adminView) adminView.classList.remove('active');
+    if (facilitiesView) facilitiesView.classList.remove('active');
+    if (hostelView) hostelView.classList.remove('active');
     if (admissionsView) {
       admissionsView.classList.add('active');
       setupAdmissionsView();
     }
     window.scrollTo({ top: 0 });
-  } else {
-    // Show public sections, hide admin & admissions
+  } else if (matchedRoute === 'facilities') {
+    if (publicScroller) publicScroller.classList.remove('active');
     if (adminView) adminView.classList.remove('active');
     if (admissionsView) admissionsView.classList.remove('active');
+    if (hostelView) hostelView.classList.remove('active');
+    if (facilitiesView) {
+      facilitiesView.classList.add('active');
+    }
+    window.scrollTo({ top: 0 });
+  } else if (matchedRoute === 'hostel') {
+    if (publicScroller) publicScroller.classList.remove('active');
+    if (adminView) adminView.classList.remove('active');
+    if (admissionsView) admissionsView.classList.remove('active');
+    if (facilitiesView) facilitiesView.classList.remove('active');
+    if (hostelView) {
+      hostelView.classList.add('active');
+    }
+    window.scrollTo({ top: 0 });
+  } else {
+    if (adminView) adminView.classList.remove('active');
+    if (admissionsView) admissionsView.classList.remove('active');
+    if (facilitiesView) facilitiesView.classList.remove('active');
+    if (hostelView) hostelView.classList.remove('active');
     if (publicScroller) {
       publicScroller.classList.add('active');
     }
@@ -417,13 +461,34 @@ window.addEventListener('scroll', () => {
 
   // Highlight active link matching scroll section
   navLinks.forEach(link => {
-    const route = link.getAttribute('href').replace('#/', '');
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('javascript:')) return;
+    const route = href.replace('#/', '');
     if (route === currentActive) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
     }
   });
+
+  // Set active states on dropdown triggers based on scrolled section
+  const dropdownAbout = document.getElementById('dropdownAboutTrigger');
+  if (dropdownAbout) {
+    if (['about', 'director'].includes(currentActive)) {
+      dropdownAbout.classList.add('active');
+    } else {
+      dropdownAbout.classList.remove('active');
+    }
+  }
+
+  const dropdownAcademics = document.getElementById('dropdownAcademicsTrigger');
+  if (dropdownAcademics) {
+    if (['academics', 'results', 'fees-schedule', 'faculties-list'].includes(currentActive)) {
+      dropdownAcademics.classList.add('active');
+    } else {
+      dropdownAcademics.classList.remove('active');
+    }
+  }
 });
 
 
@@ -1224,43 +1289,65 @@ function renderAdmissionsReviewSummary() {
 }
 
 // Final submission logic
-function handleAdmissionSubmit(event) {
+async function handleAdmissionSubmit(event) {
   event.preventDefault();
 
-  const refNum = `KHIS-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-  const dateSubmitted = new Date().toISOString().split('T')[0];
+  const name = document.getElementById('admStudentName').value.trim();
+  const dob = document.getElementById('admStudentDOB').value;
+  const gender = document.getElementById('admStudentGender').value;
+  const classLevel = document.getElementById('admGradeApplied').value;
+  const fatherName = document.getElementById('admParentName').value.trim();
+  const motherName = document.getElementById('admMotherName').value.trim();
+  const contactNo = document.getElementById('admPhone').value.trim();
+  const email = document.getElementById('admEmail').value.trim();
+  const address = document.getElementById('admAddress').value.trim();
+  const academicYear = "2025-26";
 
-  const newApplication = {
-    refNo: refNum,
-    studentName: document.getElementById('admStudentName').value,
-    dob: document.getElementById('admStudentDOB').value,
-    gender: document.getElementById('admStudentGender').value,
-    grade: document.getElementById('admGradeApplied').value,
-    parentName: document.getElementById('admParentName').value,
-    parentEmail: document.getElementById('admEmail').value,
-    phone: document.getElementById('admPhone').value,
-    address: document.getElementById('admAddress').value,
-    documents: Object.values(uploadedDocuments),
-    status: 'Pending',
-    dateSubmitted: dateSubmitted
-  };
+  try {
+    const res = await fetch(`${API_BASE}/students`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        fatherName,
+        motherName,
+        address,
+        contactNo,
+        academicYear,
+        classLevel
+      })
+    });
 
-  // Push to local DB
-  state.applications.unshift(newApplication);
-  saveState();
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to submit admission application.");
+      return;
+    }
 
-  // Render receipt layout
-  renderSubmissionReceipt(newApplication);
+    // Render receipt layout
+    renderSubmissionReceipt({
+      refNo: data.referenceId,
+      studentName: data.name,
+      grade: data.classLevel,
+      parentName: data.fatherName,
+      phone: data.contactNo,
+      dateSubmitted: data.createdAt
+    });
 
-  // Transition screens
-  document.getElementById('admissionsOpenScreen').style.display = 'none';
-  document.getElementById('admissionsReceiptScreen').style.display = 'block';
+    // Transition screens
+    document.getElementById('admissionsOpenScreen').style.display = 'none';
+    document.getElementById('admissionsReceiptScreen').style.display = 'block';
 
-  // Play alert
-  alert(currentLocale === 'hi' 
-    ? `आवेदन सफलतापूर्वक दर्ज किया गया! संदर्भ संख्या: ${refNum}` 
-    : `Application Registered! Reference Number: ${refNum}`
-  );
+    alert(currentLocale === 'hi' 
+      ? `आवेदन सफलतापूर्वक दर्ज किया गया! संदर्भ संख्या: ${data.referenceId}` 
+      : `Application Registered! Reference Number: ${data.referenceId}`
+    );
+  } catch (error) {
+    console.error('Admission submit error:', error);
+    alert("Connection to backend database failed.");
+  }
 }
 
 function renderSubmissionReceipt(app) {
@@ -1317,29 +1404,65 @@ function handleEnquirySubmit(event) {
   document.getElementById('enquiryForm').reset();
 }
 
-// ── ADMINISTRATIVE SYSTEM (ADMIN PANEL) ──
-function handleAdminLogin(event) {
+function handleWardenInquiry(event) {
   event.preventDefault();
+  const parentName = document.getElementById('wardenParentName').value.trim();
+  const contact = document.getElementById('wardenContact').value.trim();
+  const className = document.getElementById('wardenClass').value;
+  const query = document.getElementById('wardenQuery').value.trim();
+
+  alert(`Thank you, Mr./Ms. ${parentName}. Your inquiry regarding class ${className} boarding has been successfully received by the hostel warden. We will contact you at ${contact} shortly.`);
+  event.target.reset();
+}
+
+// ── ADMINISTRATIVE SYSTEM (ADMIN PANEL) ──
+const API_BASE = 'http://localhost:3000/api';
+
+function getAuthHeader() {
+  const token = sessionStorage.getItem('khis_token');
+  return token ? { 'Authorization': `Bearer ${token}` } : {};
+}
+
+async function handleAdminLogin(event) {
+  event.preventDefault();
+  const username = document.getElementById('adminUsername').value.trim();
   const pass = document.getElementById('adminPassword').value;
 
-  if (pass === 'admin') {
-    adminSession = { loggedIn: true, time: new Date().getTime() };
+  try {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password: pass })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Incorrect username or password.");
+      return;
+    }
+
+    sessionStorage.setItem('khis_token', data.token);
+    adminSession = { loggedIn: true, username: data.username, role: data.role, time: new Date().getTime() };
     sessionStorage.setItem('khis_admin_session', JSON.stringify(adminSession));
-    
+    adminRole = data.role;
+
     document.getElementById('adminAuthScreen').style.display = 'none';
     document.getElementById('adminDashboardLayout').style.display = 'grid';
     
-    // Default active sub-view
     switchAdminSubView('admin-ov', document.querySelector('[data-view="admin-ov"]'));
     renderAdminDashboardView();
-  } else {
-    alert("Incorrect administrative password. Hint: admin");
+  } catch (error) {
+    console.error('Admin login error:', error);
+    alert("Connection to backend database failed. Make sure server.js is running.");
   }
 }
 
 function handleAdminLogout() {
   adminSession = null;
   sessionStorage.removeItem('khis_admin_session');
+  sessionStorage.removeItem('khis_token');
   document.getElementById('adminAuthScreen').style.display = 'block';
   document.getElementById('adminDashboardLayout').style.display = 'none';
   window.location.hash = '#/home';
@@ -1398,6 +1521,17 @@ function switchAdminSubView(viewId, sidebarBtn) {
       p.classList.remove('active');
     }
   });
+
+  // Lazy-load data based on sub-view
+  if (viewId === 'admin-apps') {
+    loadAdminApplications();
+  } else if (viewId === 'admin-students') {
+    loadAdminStudents();
+  } else if (viewId === 'admin-fees') {
+    loadAdminFees();
+  } else if (viewId === 'admin-media') {
+    loadAdminMedia();
+  }
 
   // Guard settings form based on role
   if (viewId === 'admin-settings') {
@@ -1576,43 +1710,71 @@ function deleteEventItem(id) {
 }
 
 // Admin Applications Registry Manager
-function renderAdminApplicationsTable() {
+async function loadAdminApplications() {
   const tbody = document.getElementById('adminApplicationsTableBody');
   if (!tbody) return;
 
-  tbody.innerHTML = '';
-  state.applications.forEach(app => {
-    const tr = document.createElement('tr');
-    
-    let statusClass = 'status-pending';
-    if (app.status.toLowerCase() === 'approved') statusClass = 'status-approved';
-    if (app.status.toLowerCase() === 'rejected') statusClass = 'status-rejected';
-    if (app.status.toLowerCase() === 'under review') statusClass = 'status-review';
+  tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; color:var(--slate);">Loading applications...</td></tr>`;
 
-    tr.innerHTML = `
-      <td style="font-family:var(--font-heading); font-weight:800; color:var(--orange);">${app.refNo}</td>
-      <td style="font-weight:700;">${app.studentName}</td>
-      <td>${app.grade}</td>
-      <td>${app.phone}</td>
-      <td>${formatDisplayDate(app.dateSubmitted)}</td>
-      <td><span class="admin-badge ${statusClass}">${app.status}</span></td>
-      <td style="text-align:right; display:flex; justify-content:flex-end; gap:6px;">
-        <button class="btn btn-secondary" style="padding:4px 8px; font-size:11px;" onclick="viewApplicationDetailCard('${app.refNo}')"><i class="ti ti-eye"></i> View</button>
-        <select class="form-input" style="padding: 2px 6px; font-size:11px; border-radius:6px; cursor:pointer;" onchange="updateApplicationStatus('${app.refNo}', this.value)">
-          <option value="" disabled selected>Status</option>
-          <option value="Pending">Pending</option>
-          <option value="Under Review">Under Review</option>
-          <option value="Approved">Approve</option>
-          <option value="Rejected">Reject</option>
-        </select>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
+  try {
+    const res = await fetch(`${API_BASE}/students`, {
+      headers: getAuthHeader()
+    });
+
+    const applications = await res.json();
+    if (!res.ok) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; color:var(--danger);">Failed to load registry.</td></tr>`;
+      return;
+    }
+
+    if (applications.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; color:var(--slate);">No admission applications found.</td></tr>`;
+      return;
+    }
+
+    state.applications = applications;
+
+    let html = '';
+    applications.forEach(app => {
+      let statusClass = 'status-pending';
+      if (app.status.toLowerCase() === 'approved') statusClass = 'status-approved';
+      if (app.status.toLowerCase() === 'rejected') statusClass = 'status-rejected';
+      if (app.status.toLowerCase() === 'under review') statusClass = 'status-review';
+
+      html += `
+        <tr>
+          <td style="font-family:var(--font-heading); font-weight:800; color:var(--orange);">${app.referenceId}</td>
+          <td style="font-weight:700;">${app.name}</td>
+          <td>${app.classLevel}</td>
+          <td>${app.contactNo}</td>
+          <td>${formatDisplayDate(app.createdAt)}</td>
+          <td><span class="admin-badge ${statusClass}">${app.status}</span></td>
+          <td style="text-align:right; display:flex; justify-content:flex-end; gap:6px;">
+            <button class="btn btn-secondary" style="padding:4px 8px; font-size:11px;" onclick="viewApplicationDetailCard('${app.referenceId}')"><i class="ti ti-eye"></i> View</button>
+            <select class="form-input" style="padding: 2px 6px; font-size:11px; border-radius:6px; cursor:pointer;" onchange="updateApplicationStatus(${app.id}, this.value)">
+              <option value="" disabled selected>Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Under Review">Under Review</option>
+              <option value="Approved">Approve</option>
+              <option value="Rejected">Reject</option>
+            </select>
+          </td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading admin applications:', error);
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; color:var(--danger);">Error connecting to database.</td></tr>`;
+  }
 }
 
-function viewApplicationDetailCard(refNo) {
-  const app = state.applications.find(a => a.refNo === refNo);
+function renderAdminApplicationsTable() {
+  loadAdminApplications();
+}
+
+function viewApplicationDetailCard(referenceId) {
+  const app = state.applications.find(a => a.referenceId === referenceId);
   if (!app) return;
 
   const modal = document.getElementById('adminAppDetailModal');
@@ -1621,34 +1783,33 @@ function viewApplicationDetailCard(refNo) {
 
   body.innerHTML = `
     <div style="display:flex; justify-content:space-between; align-items:center;">
-      <h3 style="color:var(--orange); font-size:16px;">Reference Number: ${app.refNo}</h3>
+      <h3 style="color:var(--orange); font-size:16px;">Reference Number: ${app.referenceId}</h3>
       <span class="admin-badge status-pending" style="padding:4px 10px; font-size:12px;">${app.status}</span>
     </div>
     
     <div class="review-box">
       <div class="review-section-title">1. Student Details</div>
       <div class="review-grid">
-        <div class="review-label">Full Name:</div><div class="review-val">${app.studentName}</div>
-        <div class="review-label">Date of Birth:</div><div class="review-val">${formatDisplayDate(app.dob)}</div>
-        <div class="review-label">Gender:</div><div class="review-val">${app.gender}</div>
-        <div class="review-label">Applied Grade:</div><div class="review-val">${app.grade}</div>
+        <div class="review-label">Full Name:</div><div class="review-val">${app.name}</div>
+        <div class="review-label">Applied Session:</div><div class="review-val">${app.academicYear}</div>
+        <div class="review-label">Applied Grade:</div><div class="review-val">${app.classLevel}</div>
       </div>
     </div>
 
     <div class="review-box">
       <div class="review-section-title">2. Parent & Contact details</div>
       <div class="review-grid">
-        <div class="review-label">Father Name:</div><div class="review-val">${app.parentName}</div>
-        <div class="review-label">Contact Phone:</div><div class="review-val">${app.phone}</div>
-        <div class="review-label">Contact Email:</div><div class="review-val">${app.parentEmail}</div>
+        <div class="review-label">Father Name:</div><div class="review-val">${app.fatherName}</div>
+        <div class="review-label">Mother Name:</div><div class="review-val">${app.motherName}</div>
+        <div class="review-label">Contact Phone:</div><div class="review-val">${app.contactNo}</div>
         <div class="review-label">Home Address:</div><div class="review-val">${app.address}</div>
       </div>
     </div>
 
     <div class="review-box">
-      <div class="review-section-title">3. Digital Documents scans</div>
+      <div class="review-section-title">3. Registration Proofs</div>
       <div class="uploaded-files-list" style="display:flex; margin:0;">
-        ${app.documents.map(d => `<span class="uploaded-file-row" style="margin:0;"><i class="ti ti-circle-check" style="color:var(--success);"></i> Attachment File: ${d}</span>`).join('')}
+        <span class="uploaded-file-row" style="margin:0;"><i class="ti ti-circle-check" style="color:var(--success);"></i> Attachment Proof: Digital Application Record Verified</span>
       </div>
     </div>
   `;
@@ -1661,14 +1822,29 @@ function closeAppDetailModal() {
   if (modal) modal.classList.remove('active');
 }
 
-function updateApplicationStatus(refNo, statusVal) {
-  const app = state.applications.find(a => a.refNo === refNo);
-  if (!app) return;
+async function updateApplicationStatus(id, statusVal) {
+  try {
+    const res = await fetch(`${API_BASE}/students/${id}/status`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify({ status: statusVal })
+    });
 
-  app.status = statusVal;
-  saveState();
-  renderAdminDashboardView();
-  alert(`Status for application ID ${refNo} has been changed to: ${statusVal}`);
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to update status.");
+      return;
+    }
+
+    alert(`Application Status for ${data.referenceId} has been changed to: ${statusVal}`);
+    loadAdminApplications();
+  } catch (error) {
+    console.error('Error updating application status:', error);
+    alert("Connection error. Failed to update status.");
+  }
 }
 
 // EXPORT TO EXCEL COMPATIBLE CSV DOWNLOADER
@@ -1836,6 +2012,474 @@ function formatDisplayDate(dateStr) {
   return dateObj.toLocaleDateString('en-US', options);
 }
 
+// State variables for bilingual fee structures
+let currentPublicFeeMedium = 'English';
+let currentAdminFeeMedium = 'English';
+
+async function loadPublicFees() {
+  const tbody = document.getElementById('publicFeeStructureTableBody');
+  if (!tbody) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/fees?medium=${currentPublicFeeMedium}`);
+    const fees = await res.json();
+    if (!res.ok) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--danger);">Failed to load fees.</td></tr>`;
+      return;
+    }
+
+    if (fees.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--slate);">No fee records found.</td></tr>`;
+      return;
+    }
+
+    let html = '';
+    fees.forEach(f => {
+      const totalFirstQuarter = f.admissionFee + (f.tuitionFee * 3) + f.developmentFee + f.annualCharges;
+      html += `
+        <tr>
+          <td style="font-weight:700; color:var(--navy);">${f.classLevel}</td>
+          <td>₹${f.admissionFee.toLocaleString('en-IN')}</td>
+          <td>₹${f.tuitionFee.toLocaleString('en-IN')} / Mo</td>
+          <td>₹${f.developmentFee.toLocaleString('en-IN')}</td>
+          <td>₹${f.annualCharges.toLocaleString('en-IN')}</td>
+          <td style="font-weight:800; color:var(--orange);">₹${totalFirstQuarter.toLocaleString('en-IN')}</td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading public fees:', error);
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--danger);">Error connecting to backend database.</td></tr>`;
+  }
+}
+
+async function loadAdminFees() {
+  const tbody = document.getElementById('adminFeesTableBody');
+  if (!tbody) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/fees?medium=${currentAdminFeeMedium}`);
+    const fees = await res.json();
+    if (!res.ok) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--danger);">Failed to load fee records.</td></tr>`;
+      return;
+    }
+
+    if (fees.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--slate);">No fee records found.</td></tr>`;
+      return;
+    }
+
+    let html = '';
+    fees.forEach(f => {
+      html += `
+        <tr id="fee-row-${f.id}">
+          <td style="font-weight:700; vertical-align: middle;">${f.classLevel}</td>
+          <td><input type="number" class="form-input" style="padding: 4px 8px; font-size:12px; margin:0;" id="fee-adm-${f.id}" value="${f.admissionFee}"></td>
+          <td><input type="number" class="form-input" style="padding: 4px 8px; font-size:12px; margin:0;" id="fee-tui-${f.id}" value="${f.tuitionFee}"></td>
+          <td><input type="number" class="form-input" style="padding: 4px 8px; font-size:12px; margin:0;" id="fee-dev-${f.id}" value="${f.developmentFee}"></td>
+          <td><input type="number" class="form-input" style="padding: 4px 8px; font-size:12px; margin:0;" id="fee-ann-${f.id}" value="${f.annualCharges}"></td>
+          <td style="text-align:center; vertical-align: middle;">
+            <button class="btn btn-primary" style="padding: 4px 10px; font-size:11px;" onclick="saveAdminFee(${f.id})"><i class="ti ti-device-floppy"></i> Save</button>
+          </td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading admin fees:', error);
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--danger);">Connection error.</td></tr>`;
+  }
+}
+
+async function saveAdminFee(id) {
+  const admissionFee = parseFloat(document.getElementById(`fee-adm-${id}`).value);
+  const tuitionFee = parseFloat(document.getElementById(`fee-tui-${id}`).value);
+  const developmentFee = parseFloat(document.getElementById(`fee-dev-${id}`).value);
+  const annualCharges = parseFloat(document.getElementById(`fee-ann-${id}`).value);
+
+  if (isNaN(admissionFee) || isNaN(tuitionFee) || isNaN(developmentFee) || isNaN(annualCharges)) {
+    alert("Please enter valid numeric values for all fee fields.");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/fees/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify({ admissionFee, tuitionFee, developmentFee, annualCharges })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to update fee record.");
+      return;
+    }
+
+    alert(`Fee structure for ${data.classLevel} updated successfully!`);
+    loadPublicFees();
+    loadAdminFees();
+  } catch (error) {
+    console.error('Error saving admin fee:', error);
+    alert("Failed to save changes. Check database connection.");
+  }
+}
+
+function changePublicFeeMedium(medium) {
+  currentPublicFeeMedium = medium;
+  
+  // Update active tab styles
+  const tabs = document.querySelectorAll('.medium-tabs-public .btn-medium-tab');
+  tabs.forEach(tab => {
+    if (tab.id === `public-fee-tab-${medium}`) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+
+  loadPublicFees();
+}
+
+function changeAdminFeeMedium(medium) {
+  currentAdminFeeMedium = medium;
+
+  // Update active tab styles
+  const tabs = document.querySelectorAll('.medium-tabs-admin .btn-medium-tab');
+  tabs.forEach(tab => {
+    if (tab.id === `admin-fee-tab-${medium}`) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+
+  loadAdminFees();
+}
+
+async function loadAdminStudents() {
+  const tbody = document.getElementById('adminStudentsTableBody');
+  if (!tbody) return;
+
+  const academicYear = document.getElementById('filterStudentYear').value;
+  const classLevel = document.getElementById('filterStudentClass').value;
+
+  tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:20px; color:var(--slate);">Loading student records...</td></tr>`;
+
+  try {
+    let query = `?academicYear=${academicYear}`;
+    if (classLevel && classLevel !== 'all') {
+      query += `&classLevel=${classLevel}`;
+    }
+
+    const res = await fetch(`${API_BASE}/students${query}`, {
+      headers: getAuthHeader()
+    });
+    
+    const students = await res.json();
+    if (!res.ok) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:20px; color:var(--danger);">${students.error || "Failed to load student registers."}</td></tr>`;
+      return;
+    }
+
+    if (students.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:var(--slate);">No student admissions found for session ${academicYear}${classLevel !== 'all' ? ` in ${classLevel}` : ''}.</td></tr>`;
+      return;
+    }
+
+    let html = '';
+    students.forEach(s => {
+      let statusClass = 'status-pending';
+      if (s.status.toLowerCase() === 'approved') statusClass = 'status-approved';
+      if (s.status.toLowerCase() === 'rejected') statusClass = 'status-rejected';
+      if (s.status.toLowerCase() === 'under review') statusClass = 'status-review';
+
+      html += `
+        <tr>
+          <td style="font-family:var(--font-heading); font-weight:800; color:var(--orange);">${s.referenceId}</td>
+          <td style="font-weight:700;">${s.name}</td>
+          <td>${s.fatherName}</td>
+          <td>${s.motherName}</td>
+          <td>${s.contactNo}</td>
+          <td>${s.classLevel}</td>
+          <td><span class="admin-badge ${statusClass}">${s.status}</span></td>
+          <td>
+            <button class="btn btn-secondary" style="padding:4px 8px; font-size:11px; color:var(--danger); border-color:transparent;" onclick="deleteStudent(${s.id})"><i class="ti ti-trash"></i> Delete</button>
+          </td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading admin students:', error);
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:20px; color:var(--danger);">Connection error. Make sure server is running.</td></tr>`;
+  }
+}
+
+async function deleteStudent(id) {
+  if (!confirm("Are you sure you want to permanently delete this student record?")) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/students/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeader()
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to delete student record.");
+      return;
+    }
+
+    alert("Student record deleted successfully.");
+    loadAdminStudents();
+  } catch (error) {
+    console.error('Error deleting student:', error);
+    alert("Connection error. Failed to delete student.");
+  }
+}
+
+async function loadAdminMedia() {
+  const grid = document.getElementById('adminMediaGrid');
+  if (!grid) return;
+
+  const category = document.getElementById('mediaFilterCategory').value;
+  grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--slate);">Loading assets...</div>`;
+
+  try {
+    let query = '';
+    if (category && category !== 'all') {
+      query = `?category=${category}`;
+    }
+
+    const res = await fetch(`${API_BASE}/media${query}`);
+    const media = await res.json();
+    
+    if (!res.ok) {
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--danger);">Failed to load media.</div>`;
+      return;
+    }
+
+    if (media.length === 0) {
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--slate);">No media assets uploaded yet.</div>`;
+      return;
+    }
+
+    let html = '';
+    media.forEach(m => {
+      const isVideo = m.url.endsWith('.mp4') || m.url.endsWith('.webm') || m.url.endsWith('.ogg');
+      const mediaTag = isVideo 
+        ? `<video src="${m.url.startsWith('/') ? 'http://localhost:3000' + m.url : m.url}" style="width:100%; height:110px; object-fit:cover; border-radius:6px;" muted autoplay loop></video>`
+        : `<img src="${m.url.startsWith('/') ? 'http://localhost:3000' + m.url : m.url}" style="width:100%; height:110px; object-fit:cover; border-radius:6px;">`;
+
+      html += `
+        <div class="card" style="padding:10px; display:flex; flex-direction:column; gap:8px;">
+          ${mediaTag}
+          <div style="font-size:11px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${m.title || 'No Title'}">${m.title || 'Untitled'}</div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="notice-badge ${m.category}" style="font-size:9px; padding:2px 6px;">${m.category}</span>
+            <button class="btn btn-secondary" style="padding:2px 6px; font-size:10px; color:var(--danger); border-color:transparent;" onclick="deleteMediaAsset(${m.id})"><i class="ti ti-trash"></i> Delete</button>
+          </div>
+        </div>
+      `;
+    });
+    grid.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading media:', error);
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--danger);">Connection error. Make sure server is running.</div>`;
+  }
+}
+
+async function handleMediaUpload(event) {
+  event.preventDefault();
+
+  const title = document.getElementById('mediaTitle').value.trim();
+  const category = document.getElementById('mediaCategory').value;
+  const fileInput = document.getElementById('mediaFile');
+
+  if (fileInput.files.length === 0) {
+    alert("Please select a media file to upload.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('category', category);
+  formData.append('file', fileInput.files[0]);
+
+  const submitBtn = document.getElementById('mediaUploadSubmitBtn');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<i class="ti ti-loader"></i> Uploading...`;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/media`, {
+      method: 'POST',
+      headers: {
+        ...getAuthHeader()
+      },
+      body: formData
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to upload media asset.");
+      return;
+    }
+
+    alert("Media asset uploaded successfully!");
+    document.getElementById('adminMediaUploadForm').reset();
+    loadAdminMedia();
+  } catch (error) {
+    console.error('Error uploading media:', error);
+    alert("Connection error. Failed to upload.");
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<i class="ti ti-upload"></i> Upload Asset`;
+    }
+  }
+}
+
+async function deleteMediaAsset(id) {
+  if (!confirm("Are you sure you want to permanently delete this media asset?")) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/media/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeader()
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to delete media asset.");
+      return;
+    }
+
+    alert("Media asset deleted successfully.");
+    loadAdminMedia();
+  } catch (error) {
+    console.error('Error deleting media:', error);
+    alert("Connection error. Failed to delete.");
+  }
+}
+
+function revealFeeStructure(forceState) {
+  const tableWrap = document.getElementById('publicFeeTableWrap');
+  const btnWrap = document.getElementById('feeRevealBtnWrap');
+  if (!tableWrap || !btnWrap) return;
+
+  const isVisible = tableWrap.style.display === 'block';
+  const shouldShow = typeof forceState === 'boolean' ? forceState : !isVisible;
+
+  if (shouldShow) {
+    tableWrap.style.display = 'block';
+    tableWrap.style.opacity = '0';
+    btnWrap.style.display = 'none';
+    
+    // Smooth transition fade-in
+    setTimeout(() => {
+      tableWrap.style.transition = 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      tableWrap.style.opacity = '1';
+    }, 50);
+  } else {
+    tableWrap.style.transition = 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    tableWrap.style.opacity = '0';
+    
+    setTimeout(() => {
+      tableWrap.style.display = 'none';
+      btnWrap.style.display = 'block';
+    }, 300);
+  }
+}
+
+// Administrative student addition modal handlers
+function openAddStudentModal() {
+  const modal = document.getElementById('adminAddStudentModal');
+  if (modal) {
+    modal.classList.add('active');
+  }
+}
+
+function closeAddStudentModal() {
+  const modal = document.getElementById('adminAddStudentModal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+  const form = document.getElementById('adminAddStudentForm');
+  if (form) {
+    form.reset();
+  }
+}
+
+async function handleSaveNewStudent(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('stdName').value.trim();
+  const fatherName = document.getElementById('stdFather').value.trim();
+  const motherName = document.getElementById('stdMother').value.trim();
+  const address = document.getElementById('stdAddress').value.trim();
+  const contactNo = document.getElementById('stdContact').value.trim();
+  const academicYear = document.getElementById('stdYear').value;
+  const classLevel = document.getElementById('stdClass').value;
+
+  if (!name || !fatherName || !motherName || !address || !contactNo) {
+    alert("All required fields must be filled!");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/students`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        fatherName,
+        motherName,
+        address,
+        contactNo,
+        academicYear,
+        classLevel
+      })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to add student details.");
+      return;
+    }
+
+    alert(`Student record created successfully!\nReference ID: ${data.referenceId}`);
+    closeAddStudentModal();
+    loadAdminStudents(); // Reload the registers in admin panel
+  } catch (error) {
+    console.error("Error adding student record:", error);
+    alert("Connection error. Failed to add student.");
+  }
+}
+
+// Bind to window to allow HTML inline onClick handlers to find these
+window.loadAdminStudents = loadAdminStudents;
+window.deleteStudent = deleteStudent;
+window.saveAdminFee = saveAdminFee;
+window.handleMediaUpload = handleMediaUpload;
+window.deleteMediaAsset = deleteMediaAsset;
+window.handleWardenInquiry = handleWardenInquiry;
+window.loadAdminMedia = loadAdminMedia;
+window.revealFeeStructure = revealFeeStructure;
+window.changePublicFeeMedium = changePublicFeeMedium;
+window.changeAdminFeeMedium = changeAdminFeeMedium;
+window.openAddStudentModal = openAddStudentModal;
+window.closeAddStudentModal = closeAddStudentModal;
+window.handleSaveNewStudent = handleSaveNewStudent;
+
 // ── INITIAL LAUNCH ON WINDOW LOAD ──
 window.addEventListener('DOMContentLoaded', () => {
   initializeTheme();
@@ -1858,4 +2502,43 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Start YouTube Video Carousel autoplay
   startYtCarouselAutoplay();
+
+  // Load public fee table dynamically
+  loadPublicFees();
+  
+  // Add mobile Life@S.A.V.E dropdown toggle click listener
+  const dropdownLifeTrigger = document.getElementById('dropdownLifeTrigger');
+  if (dropdownLifeTrigger) {
+    dropdownLifeTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parentDropdown = dropdownLifeTrigger.closest('.nav-item-dropdown');
+      if (parentDropdown) {
+        parentDropdown.classList.toggle('active');
+      }
+    });
+  }
+
+  // Add mobile About Us dropdown toggle click listener
+  const dropdownAboutTrigger = document.getElementById('dropdownAboutTrigger');
+  if (dropdownAboutTrigger) {
+    dropdownAboutTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parentDropdown = dropdownAboutTrigger.closest('.nav-item-dropdown');
+      if (parentDropdown) {
+        parentDropdown.classList.toggle('active');
+      }
+    });
+  }
+
+  // Add mobile Academics dropdown toggle click listener
+  const dropdownAcademicsTrigger = document.getElementById('dropdownAcademicsTrigger');
+  if (dropdownAcademicsTrigger) {
+    dropdownAcademicsTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parentDropdown = dropdownAcademicsTrigger.closest('.nav-item-dropdown');
+      if (parentDropdown) {
+        parentDropdown.classList.toggle('active');
+      }
+    });
+  }
 });

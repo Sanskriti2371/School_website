@@ -73,12 +73,47 @@
       <!-- Navigation Links -->
       <nav class="nav-menu" id="navMenu">
         <a href="#/home" class="nav-link active" onclick="closeMobileMenu()" data-i18n="nav_home">Home</a>
-        <a href="#/about" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_about">About Us</a>
-        <a href="#/academics" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_academics">Academics</a>
+        <!-- About Us Dropdown -->
+        <div class="nav-item-dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-trigger" id="dropdownAboutTrigger">
+            <span data-i18n="nav_about">About Us</span> <i class="ti ti-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="nav-dropdown-content">
+            <a href="#/about" onclick="closeMobileMenu()"><i class="ti ti-school" style="margin-right:6px; color:var(--orange);"></i> About the Institute</a>
+            <a href="#/director" onclick="closeMobileMenu()"><i class="ti ti-user" style="margin-right:6px; color:var(--orange);"></i> Director Message</a>
+          </div>
+        </div>
+
+        <!-- Academics Dropdown -->
+        <div class="nav-item-dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-trigger" id="dropdownAcademicsTrigger">
+            <span data-i18n="nav_academics">Academics</span> <i class="ti ti-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="nav-dropdown-content">
+            <a href="#/results" onclick="closeMobileMenu()"><i class="ti ti-trophy" style="margin-right:6px; color:var(--orange);"></i> Results Archive</a>
+            <a href="#/fees-schedule" onclick="closeMobileMenu()"><i class="ti ti-receipt-2" style="margin-right:6px; color:var(--orange);"></i> Fee Structure</a>
+            <a href="#/faculties-list" onclick="closeMobileMenu()"><i class="ti ti-users" style="margin-right:6px; color:var(--orange);"></i> Our Faculties</a>
+          </div>
+        </div>
         <a href="#/activities" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_activities">Activities</a>
         <a href="#/gallery" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_gallery">Media Gallery</a>
         <a href="#/notices" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_notices">Notices</a>
         <a href="#/achievements" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_achievements">Achievements</a>
+        <!-- Life@S.A.V.E Dropdown -->
+        <div class="nav-item-dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-trigger" id="dropdownLifeTrigger">
+            <span>Life@S.A.V.E</span> <i class="ti ti-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="nav-dropdown-content">
+            <a href="#/facilities" onclick="closeMobileMenu()" style="font-weight:700;"><i class="ti ti-school" style="margin-right:6px; color:var(--orange);"></i> School Facilities</a>
+            <a href="#/facilities" onclick="closeMobileMenu()" style="padding-left: 28px; font-size: 12px; opacity: 0.85;"><i class="ti ti-flask" style="margin-right:4px;"></i> • STEM Science Labs</a>
+            <a href="#/facilities" onclick="closeMobileMenu()" style="padding-left: 28px; font-size: 12px; opacity: 0.85;"><i class="ti ti-book" style="margin-right:4px;"></i> • Smart Library</a>
+            <a href="#/facilities" onclick="closeMobileMenu()" style="padding-left: 28px; font-size: 12px; opacity: 0.85;"><i class="ti ti-bus" style="margin-right:4px;"></i> • Transport Bus Fleet</a>
+            <a href="#/hostel" onclick="closeMobileMenu()" style="font-weight:700; margin-top: 6px; border-top: 1px solid var(--border); padding-top: 8px;"><i class="ti ti-home" style="margin-right:6px; color:var(--orange);"></i> Hostel Facilities</a>
+            <a href="#/hostel" onclick="closeMobileMenu()" style="padding-left: 28px; font-size: 12px; opacity: 0.85;"><i class="ti ti-soup" style="margin-right:4px;"></i> • Residential Mess</a>
+            <a href="#/hostel" onclick="closeMobileMenu()" style="padding-left: 28px; font-size: 12px; opacity: 0.85;"><i class="ti ti-bed" style="margin-right:4px;"></i> • Boarding Rooms</a>
+          </div>
+        </div>
         <a href="#/contact" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_contact">Contact</a>
         <a href="#/admissions" class="nav-link nav-cta" onclick="closeMobileMenu()" data-i18n="nav_apply">Apply Now</a>
       </nav>
@@ -332,7 +367,7 @@
           </div>
 
           <!-- Full Principal's Message -->
-          <div class="card">
+          <div class="card scroll-section" id="sec-director">
             <div class="section-title-wrap">
               <i class="ti ti-award"></i>
               <h2 class="section-title" data-i18n="about_principal_title">Principal's Address in Full</h2>
@@ -415,6 +450,131 @@
                   <p style="font-size:10.5px; color:var(--slate);">PDF Document · 2.1 MB</p>
                 </div>
               </a>
+            </div>
+          </div>
+
+          <!-- Results Archive Card -->
+          <div class="card scroll-section" id="sec-results" style="margin-bottom: 30px;">
+            <div class="section-title-wrap">
+              <i class="ti ti-trophy"></i>
+              <h2 class="section-title">CBSE Board Results & Academic Merits</h2>
+            </div>
+            <p style="font-size: 13.5px; color: var(--slate); margin-bottom: 20px;">We take immense pride in our consistent track record of 100% CBSE board pass percentage and top-tier district merits year after year.</p>
+            
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;" class="mobile-stack-columns">
+              <!-- Class 12 Stats -->
+              <div style="background:rgba(255, 208, 55, 0.06); border:1px solid rgba(255, 208, 55, 0.15); padding:20px; border-radius:var(--radius); position:relative; overflow:hidden;">
+                <div style="font-size:36px; margin-bottom:8px;">🎓</div>
+                <h4 style="font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px;">Senior Secondary (Grade XII) - 2024-25</h4>
+                <ul style="list-style-type:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--slate); margin-top:12px;">
+                  <li>✨ <strong>Pass Percentage:</strong> 100% Successful Candidates</li>
+                  <li>✨ <strong>School Topper:</strong> Arpita Shukla - 98.4% (Science Stream)</li>
+                  <li>✨ <strong>Distinctions:</strong> 82% of batch secured above 75% marks</li>
+                  <li>✨ <strong>Perfect 100s:</strong> 15 students scored perfect 100 in Physics/Chemistry</li>
+                </ul>
+              </div>
+
+              <!-- Class 10 Stats -->
+              <div style="background:rgba(232, 112, 10, 0.05); border:1px solid rgba(232, 112, 10, 0.15); padding:20px; border-radius:var(--radius); position:relative; overflow:hidden;">
+                <div style="font-size:36px; margin-bottom:8px;">🏆</div>
+                <h4 style="font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px;">Secondary School (Grade X) - 2024-25</h4>
+                <ul style="list-style-type:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--slate); margin-top:12px;">
+                  <li>✨ <strong>Pass Percentage:</strong> 100% Academic Excellence</li>
+                  <li>✨ <strong>School Topper:</strong> Ayush Mishra - 97.8%</li>
+                  <li>✨ <strong>Super Achievers:</strong> 42 candidates scored above 90% cumulative</li>
+                  <li>✨ <strong>Subject Honors:</strong> 28 students with perfect GPA in Mathematics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Fee Structure Table -->
+          <div class="card scroll-section" id="sec-fees-schedule" style="margin-bottom: 30px;">
+            <div class="section-title-wrap">
+              <i class="ti ti-receipt-2"></i>
+              <h2 class="section-title" data-i18n="acad_fees_title">Fee Structure (Academic Session 2026-27)</h2>
+            </div>
+            <p style="font-size: 13.5px; color: var(--slate); margin-bottom: 20px;" data-i18n="acad_fees_sub">Below is the approved board schedule for admission, tuition, development, and annual fees. Managed in real-time by the school administration.</p>
+            
+            <!-- Step 1: Reveal Button -->
+            <div style="text-align:center; padding:20px 0;" id="feeRevealBtnWrap">
+              <button class="btn btn-primary" onclick="revealFeeStructure()" style="padding:12px 28px; font-size:13.5px;"><i class="ti ti-eye"></i> View Approved Fee Structure</button>
+            </div>
+
+            <!-- Step 2: Hidden Table wrapper -->
+            <div class="table-responsive" id="publicFeeTableWrap" style="display:none; opacity:0;">
+              <!-- Medium selector tabs! -->
+              <div class="medium-tabs-public" style="display:flex; justify-content:center; gap:10px; margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+                <button type="button" class="btn btn-medium-tab active" id="public-fee-tab-English" onclick="changePublicFeeMedium('English')" style="padding:8px 20px; font-size:12.5px; border-radius:8px; display:flex; align-items:center; gap:6px;">🇬🇧 English Medium</button>
+                <button type="button" class="btn btn-medium-tab" id="public-fee-tab-Hindi" onclick="changePublicFeeMedium('Hindi')" style="padding:8px 20px; font-size:12.5px; border-radius:8px; display:flex; align-items:center; gap:6px;">🇮🇳 Hindi Medium</button>
+              </div>
+
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Class Level</th>
+                    <th>Admission Fee</th>
+                    <th>Tuition Fee (Monthly)</th>
+                    <th>Development Fee</th>
+                    <th>Annual Charges</th>
+                    <th>Total First Quarter</th>
+                  </tr>
+                </thead>
+                <tbody id="publicFeeStructureTableBody">
+                  <!-- Dynamically populated from backend database -->
+                  <tr>
+                    <td colspan="6" style="text-align:center; padding:30px; color:var(--slate);">Loading fee records from PostgreSQL...</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Close button at the bottom of the table -->
+              <div style="text-align:center; padding:20px 0 10px;">
+                <button type="button" class="btn btn-medium-tab" onclick="revealFeeStructure(false)" style="padding:10px 24px; border-radius:30px; font-weight:700;"><i class="ti ti-eye-off"></i> Close Fee Table</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Our Faculties Card -->
+          <div class="card scroll-section" id="sec-faculties-list" style="margin-top: 30px;">
+            <div class="section-title-wrap">
+              <i class="ti ti-users"></i>
+              <h2 class="section-title">Meet Our Distinguished Faculty</h2>
+            </div>
+            <p style="font-size: 13.5px; color: var(--slate); margin-bottom: 25px;">Our highly qualified, passionate, and CBSE-certified mentors who shape future leaders through dedication and experiential teaching methods.</p>
+            
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
+              <!-- Principal -->
+              <div class="fac-card" style="background:var(--offwhite); border:1px solid var(--border); padding:16px; border-radius:var(--radius); text-align:center; transition:var(--transition);">
+                <div style="width:90px; height:90px; border-radius:50%; background:var(--orange); color:var(--white); display:flex; align-items:center; justify-content:center; font-size:40px; margin:0 auto 12px;">👩‍🏫</div>
+                <h4 style="font-size:14.5px; font-weight:800; margin-bottom:2px;">Dr. Sudha Ramachandran</h4>
+                <p style="font-size:11.5px; color:var(--orange); font-weight:700; margin-bottom:8px;">Principal & Eminent Scholar</p>
+                <p style="font-size:11px; color:var(--slate);">Ph.D. in English Lit, 20+ Years Educational Leadership</p>
+              </div>
+
+              <!-- Faculty 1 -->
+              <div class="fac-card" style="background:var(--offwhite); border:1px solid var(--border); padding:16px; border-radius:var(--radius); text-align:center; transition:var(--transition);">
+                <div style="width:90px; height:90px; border-radius:50%; background:var(--amber); color:var(--white); display:flex; align-items:center; justify-content:center; font-size:40px; margin:0 auto 12px;">👨‍🔬</div>
+                <h4 style="font-size:14.5px; font-weight:800; margin-bottom:2px;">Mr. Alok Tripathi</h4>
+                <p style="font-size:11.5px; color:var(--orange); font-weight:700; margin-bottom:8px;">HOD Science & Physics</p>
+                <p style="font-size:11px; color:var(--slate);">M.Sc. Physics (B.Ed), Specialist in Practical Electromagnetics</p>
+              </div>
+
+              <!-- Faculty 2 -->
+              <div class="fac-card" style="background:var(--offwhite); border:1px solid var(--border); padding:16px; border-radius:var(--radius); text-align:center; transition:var(--transition);">
+                <div style="width:90px; height:90px; border-radius:50%; background:var(--sunburst); color:var(--night); display:flex; align-items:center; justify-content:center; font-size:40px; margin:0 auto 12px;">👩‍💻</div>
+                <h4 style="font-size:14.5px; font-weight:800; margin-bottom:2px;">Mrs. Shalini Verma</h4>
+                <p style="font-size:11.5px; color:var(--orange); font-weight:700; margin-bottom:8px;">HOD Mathematics</p>
+                <p style="font-size:11px; color:var(--slate);">M.Sc. Mathematics, 12 Years CBSE Board Evaluation Experience</p>
+              </div>
+
+              <!-- Faculty 3 -->
+              <div class="fac-card" style="background:var(--offwhite); border:1px solid var(--border); padding:16px; border-radius:var(--radius); text-align:center; transition:var(--transition);">
+                <div style="width:90px; height:90px; border-radius:50%; background:var(--night); color:var(--white); display:flex; align-items:center; justify-content:center; font-size:40px; margin:0 auto 12px;">👨‍💻</div>
+                <h4 style="font-size:14.5px; font-weight:800; margin-bottom:2px;">Mr. Rajesh Mishra</h4>
+                <p style="font-size:11.5px; color:var(--orange); font-weight:700; margin-bottom:8px;">HOD Computer Science & AI</p>
+                <p style="font-size:11px; color:var(--slate);">M.C.A, Specialist in Python Automation & Robotics Integration</p>
+              </div>
             </div>
           </div>
         </div>
@@ -788,6 +948,129 @@
 
     </div> <!-- ── END PUBLIC SCROLLER ── -->
 
+    <!-- ═══ SCHOOL FACILITIES VIEW (SEPARATE VIEW) ═══ -->
+    <section id="view-facilities" class="view-section">
+      <div class="container">
+        <div class="view-header">
+          <h2 data-i18n="fac_heading">School Campus Facilities</h2>
+          <p data-i18n="fac_subheading">Explore the premium infrastructural design and dynamic learning zones at our state-of-the-art campus.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+          <!-- Card 1: Academic Blocks -->
+          <div class="card" style="padding:0; overflow:hidden; display:flex; flex-direction:column; gap:0;">
+            <div style="height:200px; background-image:url('assets/campus_cover.jpg'); background-size:cover; background-position:center; position:relative;">
+              <span style="position:absolute; top:12px; left:12px; background:var(--orange); color:var(--white); padding:4px 10px; font-size:10px; font-weight:800; border-radius:var(--radius-sm);">ACADEMICS</span>
+            </div>
+            <div style="padding:24px;">
+              <h3 style="font-size:16px; margin-bottom:8px;" data-i18n="fac_c1_title">Smart Classroom Blocks</h3>
+              <p style="font-size:13px; color:var(--slate); line-height:1.5;" data-i18n="fac_c1_desc">Fully air-conditioned classrooms equipped with high-definition digital smart boards, ergonomic seating, and multi-modal acoustic soundproofing.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Science Labs -->
+          <div class="card" style="padding:0; overflow:hidden; display:flex; flex-direction:column; gap:0;">
+            <div style="height:200px; background-image:url('assets/labs.jpg'); background-size:cover; background-position:center; position:relative;">
+              <span style="position:absolute; top:12px; left:12px; background:var(--orange); color:var(--white); padding:4px 10px; font-size:10px; font-weight:800; border-radius:var(--radius-sm);">RESEARCH</span>
+            </div>
+            <div style="padding:24px;">
+              <h3 style="font-size:16px; margin-bottom:8px;" data-i18n="fac_c2_title">Hi-Tech Laboratories</h3>
+              <p style="font-size:13px; color:var(--slate); line-height:1.5;" data-i18n="fac_c2_desc">Advanced modular labs for Physics, Chemistry, Biology, and Robotics, housing professional grade apparatuses and certified safety control mechanisms.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Library -->
+          <div class="card" style="padding:0; overflow:hidden; display:flex; flex-direction:column; gap:0;">
+            <div style="height:200px; background-image:url('assets/library.jpg'); background-size:cover; background-position:center; position:relative;">
+              <span style="position:absolute; top:12px; left:12px; background:var(--orange); color:var(--white); padding:4px 10px; font-size:10px; font-weight:800; border-radius:var(--radius-sm);">RESOURCE</span>
+            </div>
+            <div style="padding:24px;">
+              <h3 style="font-size:16px; margin-bottom:8px;" data-i18n="fac_c3_title">Central Resource Library</h3>
+              <p style="font-size:13px; color:var(--slate); line-height:1.5;" data-i18n="fac_c3_desc">Quiet, spacious research hubs indexing 5,000+ classical and scientific volumes, digital reading portals, and modern audio-visual reference bays.</p>
+            </div>
+          </div>
+
+          <!-- Card 4: Transport -->
+          <div class="card" style="padding:0; overflow:hidden; display:flex; flex-direction:column; gap:0;">
+            <div style="height:200px; background-image:url('assets/bus.jpg'); background-size:cover; background-position:center; position:relative;">
+              <span style="position:absolute; top:12px; left:12px; background:var(--orange); color:var(--white); padding:4px 10px; font-size:10px; font-weight:800; border-radius:var(--radius-sm);">SAFETY</span>
+            </div>
+            <div style="padding:24px;">
+              <h3 style="font-size:16px; margin-bottom:8px;" data-i18n="fac_c4_title">School Transport Fleet</h3>
+              <p style="font-size:13px; color:var(--slate); line-height:1.5;" data-i18n="fac_c4_desc">A GPS-tracked school bus fleet traversing Kanpur, featuring surveillance camera integrations, speed governors, and trained clinical support staff on board.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HOSTEL FACILITIES VIEW (SEPARATE VIEW) ═══ -->
+    <section id="view-hostel" class="view-section">
+      <div class="container">
+        <div class="view-header">
+          <h2 data-i18n="hostel_heading">Hostel & Boarding Facilities</h2>
+          <p data-i18n="hostel_subheading">A warm, safe, and academically nourishing home away from home for local and international students.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;" class="mobile-stack-columns">
+          <!-- Left side: Hostel stats and details -->
+          <div style="display:flex; flex-direction:column; gap:25px;">
+            <div class="card" style="padding:0; overflow:hidden;">
+              <div style="height:240px; background-image:url('assets/hostel.jpg'); background-size:cover; background-position:center;"></div>
+            </div>
+            
+            <div class="card">
+              <h3 style="font-size:18px; margin-bottom:12px; color:var(--orange);"><i class="ti ti-home-check"></i> <span data-i18n="hostel_life_title">Residential Boarding Guidelines</span></h3>
+              <ul style="list-style-type:none; display:flex; flex-direction:column; gap:12px; font-size:13px; color:var(--slate); line-height:1.5;">
+                <li><i class="ti ti-check" style="color:var(--success);"></i> <strong>Room Structure:</strong> Spacious, well-ventilated double and triple sharing rooms with dedicated study tables and personalized storage cupboards.</li>
+                <li><i class="ti ti-check" style="color:var(--success);"></i> <strong>Hygienic Mess & Nutrition:</strong> A highly hygienic mess kitchen serving fresh, nutritionally balanced vegetarian meals planned by child health experts.</li>
+                <li><i class="ti ti-check" style="color:var(--success);"></i> <strong>Academic Prep Hours:</strong> Mandatory evening study hours monitored closely by resident tutors to support doubts and homework.</li>
+                <li><i class="ti ti-check" style="color:var(--success);"></i> <strong>24/7 Safety & Healthcare:</strong> Round-the-clock security surveillance, resident wardens, and an on-call physician with a dedicated medical clinic room.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right side: Inquiry Form -->
+          <div class="card">
+            <div class="section-title-wrap">
+              <i class="ti ti-mail-fast"></i>
+              <h3 class="section-title" data-i18n="hostel_form_title">Connect with the Hostel Warden</h3>
+            </div>
+            <p style="font-size:13px; color:var(--slate); margin-bottom:20px;" data-i18n="hostel_form_sub">Have questions about seat availability, fees, or boarding schedules? Submit a query directly to the hostel administration office.</p>
+            
+            <form onsubmit="handleWardenInquiry(event)">
+              <div class="form-field" style="margin-bottom:15px;">
+                <label for="wardenParentName"><span data-i18n="lbl_parent_name">Parent Full Name</span> *</label>
+                <input type="text" id="wardenParentName" class="form-input" required placeholder="e.g. Rajesh Mishra">
+              </div>
+              <div class="form-field" style="margin-bottom:15px;">
+                <label for="wardenContact"><span data-i18n="lbl_contact_no">Contact Number</span> *</label>
+                <input type="tel" id="wardenContact" class="form-input" required placeholder="e.g. 9876543210">
+              </div>
+              <div class="form-field" style="margin-bottom:15px;">
+                <label for="wardenClass"><span data-i18n="lbl_class">Select Class Level</span> *</label>
+                <select id="wardenClass" class="form-input" required>
+                  <option value="" disabled selected>Choose class</option>
+                  <option value="Class 6">Class VI</option>
+                  <option value="Class 7">Class VII</option>
+                  <option value="Class 8">Class VIII</option>
+                  <option value="Class 9">Class IX</option>
+                  <option value="Class 10">Class X</option>
+                  <option value="Class 11">Class XI</option>
+                  <option value="Class 12">Class XII</option>
+                </select>
+              </div>
+              <div class="form-field" style="margin-bottom:20px;">
+                <label for="wardenQuery"><span data-i18n="lbl_message">Your Query Details</span> *</label>
+                <textarea id="wardenQuery" class="form-input" style="height:100px; resize:none;" required placeholder="Ask about hostel timings, mess menu, room sharing availability..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="ti ti-send"></i> <span data-i18n="btn_submit_query">Submit Warden Query</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ ADMIN PANEL VIEW (GATED AND KEPT SEPARATE) ═══ -->
     <section id="view-admin" class="view-section">
       <div class="container">
@@ -800,6 +1083,10 @@
             <p style="font-size:12px; color:var(--slate);" data-i18n="admin_auth_sub">Enter administrator password to enter dashboard</p>
           </div>
           <form onsubmit="handleAdminLogin(event)" style="display:flex; flex-direction:column; gap:12px;">
+            <div class="form-field">
+              <label for="adminUsername">Username</label>
+              <input type="text" id="adminUsername" class="form-input" required placeholder="Enter username (default: Admin)">
+            </div>
             <div class="form-field">
               <label for="adminPassword" data-i18n="lbl_admin_pass">Password</label>
               <input type="password" id="adminPassword" class="form-input" required placeholder="Enter password (default: admin)">
@@ -822,6 +1109,9 @@
               <button class="admin-sidebar-btn" data-view="admin-notices" onclick="switchAdminSubView('admin-notices', this)"><i class="ti ti-bell"></i> Manage Notices</button>
               <button class="admin-sidebar-btn" data-view="admin-events" onclick="switchAdminSubView('admin-events', this)"><i class="ti ti-calendar"></i> Manage Events</button>
               <button class="admin-sidebar-btn" data-view="admin-apps" onclick="switchAdminSubView('admin-apps', this)"><i class="ti ti-forms"></i> Admissions Form</button>
+              <button class="admin-sidebar-btn" data-view="admin-students" onclick="switchAdminSubView('admin-students', this)"><i class="ti ti-users"></i> Student Logs</button>
+              <button class="admin-sidebar-btn" data-view="admin-fees" onclick="switchAdminSubView('admin-fees', this)"><i class="ti ti-receipt-2"></i> Manage Fees</button>
+              <button class="admin-sidebar-btn" data-view="admin-media" onclick="switchAdminSubView('admin-media', this)"><i class="ti ti-photo"></i> Media Manager</button>
               <button class="admin-sidebar-btn" data-view="admin-settings" onclick="switchAdminSubView('admin-settings', this)"><i class="ti ti-settings"></i> Site Settings</button>
             </div>
 
@@ -978,6 +1268,168 @@
                     <!-- Dynamic applications -->
                   </tbody>
                 </table>
+              </div>
+            </div>
+
+            <!-- SUB-VIEW: STUDENT LOGS -->
+            <div class="admin-view-panel" id="admin-students">
+              <div class="section-title-wrap" style="margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <i class="ti ti-users"></i>
+                  <h3 class="section-title">Student Admission Registers</h3>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="openAddStudentModal()" style="font-size:12.5px; padding:6px 14px;"><i class="ti ti-plus"></i> Add New Student</button>
+              </div>
+
+              <!-- Filter form -->
+              <div class="card" style="margin-bottom:20px; padding:20px;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr 150px; gap:15px; align-items:end;" class="mobile-stack-columns">
+                  <div class="form-field">
+                    <label for="filterStudentYear">Academic Session</label>
+                    <select id="filterStudentYear" class="form-input">
+                      <option value="2025-26" selected>2025-26</option>
+                      <option value="2026-27">2026-27</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="filterStudentClass">Class Level</label>
+                    <select id="filterStudentClass" class="form-input">
+                      <option value="all" selected>All Classes</option>
+                      <option value="Nursery">Nursery</option>
+                      <option value="LKG">LKG</option>
+                      <option value="UKG">UKG</option>
+                      <option value="Class 1">Class I</option>
+                      <option value="Class 2">Class II</option>
+                      <option value="Class 3">Class III</option>
+                      <option value="Class 4">Class IV</option>
+                      <option value="Class 5">Class V</option>
+                      <option value="Class 6">Class VI</option>
+                      <option value="Class 7">Class VII</option>
+                      <option value="Class 8">Class VIII</option>
+                      <option value="Class 9">Class IX</option>
+                      <option value="Class 10">Class X</option>
+                      <option value="Class 11 Science">Class XI (Science)</option>
+                      <option value="Class 11 Commerce">Class XI (Commerce)</option>
+                      <option value="Class 11 Humanities">Class XI (Humanities)</option>
+                      <option value="Class 12 Science">Class XII (Science)</option>
+                      <option value="Class 12 Commerce">Class XII (Commerce)</option>
+                      <option value="Class 12 Humanities">Class XII (Humanities)</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-primary" onclick="loadAdminStudents()" style="width:100%; height:42px; justify-content:center;"><i class="ti ti-filter"></i> Filter</button>
+                </div>
+              </div>
+
+              <!-- Student table list -->
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Ref ID</th>
+                      <th>Student Name</th>
+                      <th>Father Name</th>
+                      <th>Mother Name</th>
+                      <th>Contact No</th>
+                      <th>Class</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminStudentsTableBody">
+                    <tr>
+                      <td colspan="8" style="text-align:center; padding:30px; color:var(--slate);">Select session and click Filter to load records...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUB-VIEW: MANAGE FEES -->
+            <div class="admin-view-panel" id="admin-fees">
+              <div class="section-title-wrap" style="margin-bottom:20px;">
+                <i class="ti ti-receipt-2"></i>
+                <h3 class="section-title">Manage School Fee Structure</h3>
+              </div>
+
+              <p style="font-size:13px; color:var(--slate); margin-bottom:20px;">Below is the editable Excel-style grid of all class fees. Changes made here will be updated in the Neon tech PostgreSQL database and immediately reflect on the public Academics page.</p>
+
+              <!-- Admin Manage Fees tabs -->
+              <div class="medium-tabs-admin" style="display:flex; gap:10px; margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+                <button type="button" class="btn btn-medium-tab active" id="admin-fee-tab-English" onclick="changeAdminFeeMedium('English')" style="padding:6px 16px; font-size:12.5px; border-radius:8px; display:flex; align-items:center; gap:6px;">🇬🇧 English Medium Fees</button>
+                <button type="button" class="btn btn-medium-tab" id="admin-fee-tab-Hindi" onclick="changeAdminFeeMedium('Hindi')" style="padding:6px 16px; font-size:12.5px; border-radius:8px; display:flex; align-items:center; gap:6px;">🇮🇳 Hindi Medium Fees</button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="admin-table" style="font-size:12.5px;">
+                  <thead>
+                    <tr>
+                      <th>Class Level</th>
+                      <th style="width:140px;">Admission Fee (₹)</th>
+                      <th style="width:140px;">Tuition Fee (₹/Mo)</th>
+                      <th style="width:140px;">Development Fee (₹)</th>
+                      <th style="width:140px;">Annual Charges (₹)</th>
+                      <th style="width:100px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminFeesTableBody">
+                    <tr>
+                      <td colspan="6" style="text-align:center; padding:30px; color:var(--slate);">Loading fee records from PostgreSQL...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUB-VIEW: MEDIA MANAGER -->
+            <div class="admin-view-panel" id="admin-media">
+              <div class="section-title-wrap" style="margin-bottom:20px;">
+                <i class="ti ti-photo"></i>
+                <h3 class="section-title">Visual Media Manager</h3>
+              </div>
+
+              <div style="display:grid; grid-template-columns:300px 1fr; gap:30px;" class="mobile-stack-columns">
+                <!-- Upload form -->
+                <div class="card" style="height:fit-content;">
+                  <h4 style="font-size:14px; margin-bottom:15px; color:var(--orange);"><i class="ti ti-cloud-upload"></i> Upload Media Asset</h4>
+                  <form id="adminMediaUploadForm" onsubmit="handleMediaUpload(event)">
+                    <div class="form-field" style="margin-bottom:12px;">
+                      <label for="mediaTitle">Asset Title</label>
+                      <input type="text" id="mediaTitle" class="form-input" required placeholder="e.g. Sports Meet Athletics">
+                    </div>
+                    <div class="form-field" style="margin-bottom:12px;">
+                      <label for="mediaCategory">Category Block</label>
+                      <select id="mediaCategory" class="form-input" required>
+                        <option value="gallery" selected>Media Gallery</option>
+                        <option value="slideshow">Hero Slideshow</option>
+                        <option value="facilities">School Facilities</option>
+                        <option value="hostel">Hostel Facilities</option>
+                      </select>
+                    </div>
+                    <div class="form-field" style="margin-bottom:20px;">
+                      <label for="mediaFile">Choose File (Image/Video)</label>
+                      <input type="file" id="mediaFile" class="form-input" required accept="image/*,video/*" style="padding:6px 12px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;" id="mediaUploadSubmitBtn"><i class="ti ti-upload"></i> Upload Asset</button>
+                  </form>
+                </div>
+
+                <!-- Media Gallery List -->
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                    <h4 style="font-size:14px;">Media Registry</h4>
+                    <select id="mediaFilterCategory" class="form-input" style="width:180px; padding:6px 12px;" onchange="loadAdminMedia()">
+                      <option value="all" selected>All Categories</option>
+                      <option value="gallery">Media Gallery</option>
+                      <option value="slideshow">Hero Slideshow</option>
+                      <option value="facilities">School Facilities</option>
+                      <option value="hostel">Hostel Facilities</option>
+                    </select>
+                  </div>
+                  
+                  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:15px;" id="adminMediaGrid">
+                    <!-- Media assets populated here -->
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -1247,6 +1699,81 @@
       <div class="modal-footer">
         <button class="btn btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="closeAppDetailModal()">Close Detail</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ── MODAL: ADD STUDENT ── -->
+  <div class="modal" id="adminAddStudentModal">
+    <div class="modal-content" style="max-width: 550px;">
+      <button type="button" class="modal-close" onclick="closeAddStudentModal()">×</button>
+      <div class="modal-header">
+        <h3>Add New Student Details</h3>
+      </div>
+      <form id="adminAddStudentForm" onsubmit="handleSaveNewStudent(event)">
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:12px;">
+          <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+            <div class="form-field">
+              <label for="stdName">Student Name *</label>
+              <input type="text" id="stdName" class="form-input" required placeholder="e.g. Rahul Sharma">
+            </div>
+            <div class="form-field">
+              <label for="stdContact">Contact Number *</label>
+              <input type="text" id="stdContact" class="form-input" required placeholder="e.g. 9876543210">
+            </div>
+          </div>
+          <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+            <div class="form-field">
+              <label for="stdFather">Father's Name *</label>
+              <input type="text" id="stdFather" class="form-input" required placeholder="e.g. Anil Sharma">
+            </div>
+            <div class="form-field">
+              <label for="stdMother">Mother's Name *</label>
+              <input type="text" id="stdMother" class="form-input" required placeholder="e.g. Sunita Sharma">
+            </div>
+          </div>
+          <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+            <div class="form-field">
+              <label for="stdYear">Academic Session *</label>
+              <select id="stdYear" class="form-input" required>
+                <option value="2025-26" selected>2025-26</option>
+                <option value="2026-27">2026-27</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="stdClass">Class Level *</label>
+              <select id="stdClass" class="form-input" required>
+                <option value="Nursery">Nursery</option>
+                <option value="LKG">LKG</option>
+                <option value="UKG">UKG</option>
+                <option value="Class 1">Class I</option>
+                <option value="Class 2">Class II</option>
+                <option value="Class 3">Class III</option>
+                <option value="Class 4">Class IV</option>
+                <option value="Class 5">Class V</option>
+                <option value="Class 6">Class VI</option>
+                <option value="Class 7">Class VII</option>
+                <option value="Class 8">Class VIII</option>
+                <option value="Class 9">Class IX</option>
+                <option value="Class 10">Class X</option>
+                <option value="Class 11 Science">Class XI (Science)</option>
+                <option value="Class 11 Commerce">Class XI (Commerce)</option>
+                <option value="Class 11 Humanities">Class XI (Humanities)</option>
+                <option value="Class 12 Science">Class XII (Science)</option>
+                <option value="Class 12 Commerce">Class XII (Commerce)</option>
+                <option value="Class 12 Humanities">Class XII (Humanities)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="stdAddress">Residential Address *</label>
+            <textarea id="stdAddress" class="form-input" style="height:60px; resize:none;" required placeholder="Enter student's full address..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="closeAddStudentModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="padding:6px 14px; font-size:12px;">Save Student</button>
+        </div>
+      </form>
     </div>
   </div>
 
