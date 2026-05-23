@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanpur Heritage International School | Excellence in Education</title>
+  
+  <!-- Tabler Icons Webfont -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-info">
+        <span><i class="ti ti-phone"></i> +91 512 298 7654</span>
+        <span><i class="ti ti-mail"></i> info@kanpurheritage.edu.in</span>
+        <span class="desktop-only"><i class="ti ti-map-pin"></i> Mall Road, Kanpur, UP</span>
+      </div>
+      <div class="topbar-actions">
+        <!-- Language Switcher -->
+        <div class="lang-toggle" onclick="toggleLanguage(this)" id="langToggle">
+          <div class="lang-btn active" id="lang-en">En</div>
+          <div class="lang-btn" id="lang-hi">हिं</div>
+        </div>
+        
+        <!-- Theme Switcher -->
+        <div class="theme-selector">
+          <button class="theme-btn" id="themeBtn" onclick="toggleThemeDropdown()" aria-label="Switch Theme">
+            <i class="ti ti-sun" id="themeIcon"></i>
+          </button>
+          <div class="theme-dropdown" id="themeDropdown">
+            <div class="theme-option" onclick="changeTheme('light')">
+              <i class="ti ti-sun"></i> <span data-i18n="theme_light">Light</span>
+            </div>
+            <div class="theme-option" onclick="changeTheme('dark')">
+              <i class="ti ti-moon"></i> <span data-i18n="theme_dark">Dark</span>
+            </div>
+            <div class="theme-option" onclick="changeTheme('system')">
+              <i class="ti ti-device-laptop"></i> <span data-i18n="theme_system">System</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Entry -->
+        <a href="#/admin" class="topbar-link" style="display:flex; align-items:center; gap:4px; font-weight:600; color:rgba(255,255,255,0.85);">
+          <i class="ti ti-lock"></i> <span data-i18n="nav_admin">Admin Portal</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN HEADER / NAVIGATION ── -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="#/home" class="logo-link">
+        <div class="logo-icon">🏫</div>
+        <div class="logo-text">
+          <h1 data-i18n="school_name">Kanpur Heritage</h1>
+          <p data-i18n="school_sub">International School</p>
+        </div>
+      </a>
+      
+      <!-- Hamburger Menu for Mobile -->
+      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+        <i class="ti ti-menu-2" id="hamburgerIcon"></i>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#/home" class="nav-link active" onclick="closeMobileMenu()" data-i18n="nav_home">Home</a>
+        <a href="#/about" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_about">About Us</a>
+        <a href="#/academics" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_academics">Academics</a>
+        <a href="#/activities" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_activities">Activities</a>
+        <a href="#/gallery" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_gallery">Media Gallery</a>
+        <a href="#/notices" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_notices">Notices</a>
+        <a href="#/achievements" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_achievements">Achievements</a>
+        <a href="#/contact" class="nav-link" onclick="closeMobileMenu()" data-i18n="nav_contact">Contact</a>
+        <a href="#/admissions" class="nav-link nav-cta" onclick="closeMobileMenu()" data-i18n="nav_apply">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── LIVE NOTICE TICKER ── -->
+  <div class="notice-ticker-bar">
+    <div class="container ticker-inner">
+      <div class="ticker-label">
+        <i class="ti ti-bell-ringing"></i>
+        <span data-i18n="ticker_title">Latest Updates</span>
+      </div>
+      <div class="ticker-container">
+        <div class="ticker-track" id="noticeTickerTrack">
+          <!-- Dynamically populated notice items -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SPA VIEWS (SECTIONS) ── -->
+  <main style="flex: 1;">
+
+    <!-- ── PUBLIC SCROLLER (ALL PUBLIC SECTIONS STACKED VERTICALLY) ── -->
+    <div id="public-scroller" class="view-section active">
+      
+      <!-- ═══ HOME SECTION ═══ -->
+      <section id="sec-home" class="scroll-section">
+        <div class="container">
+          
+          <!-- Hero section: Full-width Slideshow Box -->
+          <div class="hero">
+            <div class="hero-frame full-box-slideshow" id="heroSlideshow">
+              <!-- Slide 1: School Campus -->
+              <div class="hero-slide active">
+                <div class="hero-frame-bg" style="background-image: linear-gradient(135deg, rgba(26,26,46,0.15), rgba(26,26,46,0.65)), url('assets/campus_cover.jpg');"></div>
+                <span class="hero-slide-emoji">🏛️</span>
+                <div class="hero-slide-caption" data-i18n="slide_campus">Modern Academic Campus</div>
+              </div>
+              <!-- Slide 2: Hostel -->
+              <div class="hero-slide">
+                <div class="hero-frame-bg" style="background-image: linear-gradient(135deg, rgba(26,26,46,0.15), rgba(26,26,46,0.65)), url('assets/hostel.jpg');"></div>
+                <span class="hero-slide-emoji">🏢</span>
+                <div class="hero-slide-caption" data-i18n="slide_hostel">Premium Student Hostel</div>
+              </div>
+              <!-- Slide 3: Smart Bus -->
+              <div class="hero-slide">
+                <div class="hero-frame-bg" style="background-image: linear-gradient(135deg, rgba(26,26,46,0.15), rgba(26,26,46,0.65)), url('assets/bus.jpg');"></div>
+                <span class="hero-slide-emoji">🚌</span>
+                <div class="hero-slide-caption" data-i18n="slide_bus">GPS-Tracked Safe Transport</div>
+              </div>
+              <!-- Slide 4: Science Labs -->
+              <div class="hero-slide">
+                <div class="hero-frame-bg" style="background-image: linear-gradient(135deg, rgba(26,26,46,0.15), rgba(26,26,46,0.65)), url('assets/labs.jpg');"></div>
+                <span class="hero-slide-emoji">🔬</span>
+                <div class="hero-slide-caption" data-i18n="slide_labs">Advanced Science Laboratories</div>
+              </div>
+              <!-- Slide 5: Digital Library -->
+              <div class="hero-slide">
+                <div class="hero-frame-bg" style="background-image: linear-gradient(135deg, rgba(26,26,46,0.15), rgba(26,26,46,0.65)), url('assets/library.jpg');"></div>
+                <span class="hero-slide-emoji">📚</span>
+                <div class="hero-slide-caption" data-i18n="slide_library">AC Digital Library & Reading Rooms</div>
+              </div>
+
+              <!-- Slider Indicators Dots -->
+              <div class="hero-slider-dots" id="heroSliderDots">
+                <span class="slider-dot active" onclick="setHeroSlide(0)"></span>
+                <span class="slider-dot" onclick="setHeroSlide(1)"></span>
+                <span class="slider-dot" onclick="setHeroSlide(2)"></span>
+                <span class="slider-dot" onclick="setHeroSlide(3)"></span>
+                <span class="slider-dot" onclick="setHeroSlide(4)"></span>
+              </div>
+              
+              <!-- Badge placed over the Slideshow -->
+              <div class="hero-badge">
+                <div class="hero-badge-icon">⭐</div>
+                <div class="hero-badge-text">
+                  <h4 data-i18n="hero_badge_title">No. 1 School</h4>
+                  <p data-i18n="hero_badge_sub">Kanpur Region</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Thoughts Content (moved below images and above stats grid) -->
+          <div class="hero-thoughts-section">
+            <h1 id="heroTitle">Inspiring <span>Excellence</span>,<br>Nurturing Character</h1>
+            <p id="heroSub">Empowering the youth of Kanpur with standard education, scientific learning models, and cultural values at our premium campus.</p>
+          </div>
+
+          <!-- Quick Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">25+</div>
+              <div class="stat-label" data-i18n="stat_years">Years of Legacy</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">1500+</div>
+              <div class="stat-label" data-i18n="stat_students">Active Students</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100+</div>
+              <div class="stat-label" data-i18n="stat_teachers">Expert Teachers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100%</div>
+              <div class="stat-label" data-i18n="stat_results">CBSE Success</div>
+            </div>
+          </div>
+
+          <!-- YouTube Video Thumbnail Slideshow Box -->
+          <div class="youtube-carousel-box">
+            <div class="yt-carousel-header">
+              <span class="yt-carousel-badge"><i class="ti ti-brand-youtube"></i> HIGHLIGHTS</span>
+              <h3 data-i18n="yt_title">KHIS TV & Video Gallery</h3>
+              <p data-i18n="yt_subtitle">Take a virtual walk through our campus, events, and modern learning facilities.</p>
+            </div>
+            
+            <div class="yt-carousel-viewport">
+              <button class="yt-nav-btn prev" onclick="slideYtCarousel(-1)" aria-label="Previous videos">‹</button>
+              <div class="yt-carousel-track" id="ytCarouselTrack">
+                <!-- Video 1 -->
+                <div class="yt-card" onclick="openYtVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                  <div class="yt-thumb" style="background-image: url('assets/campus_cover.jpg');">
+                    <div class="yt-play-btn"><i class="ti ti-player-play-filled"></i></div>
+                  </div>
+                  <div class="yt-caption">
+                    <h4 data-i18n="yt_v1_title">Official School Campus Tour</h4>
+                    <p data-i18n="yt_v1_desc">Explore our top-tier academic blocks, hostels, and learning zones.</p>
+                  </div>
+                </div>
+                <!-- Video 2 -->
+                <div class="yt-card" onclick="openYtVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                  <div class="yt-thumb" style="background-image: url('assets/hostel.jpg');">
+                    <div class="yt-play-btn"><i class="ti ti-player-play-filled"></i></div>
+                  </div>
+                  <div class="yt-caption">
+                    <h4 data-i18n="yt_v2_title">Premium Hostel & Boarding Tour</h4>
+                    <p data-i18n="yt_v2_desc">A look inside our safe, comfortable, and collaborative student housing.</p>
+                  </div>
+                </div>
+                <!-- Video 3 -->
+                <div class="yt-card" onclick="openYtVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                  <div class="yt-thumb" style="background-image: url('assets/bus.jpg');">
+                    <div class="yt-play-btn"><i class="ti ti-player-play-filled"></i></div>
+                  </div>
+                  <div class="yt-caption">
+                    <h4 data-i18n="yt_v3_title">GPS Smart Bus System</h4>
+                    <p data-i18n="yt_v3_desc">Discover our modern, secured, and comfortable bus fleet.</p>
+                  </div>
+                </div>
+                <!-- Video 4 -->
+                <div class="yt-card" onclick="openYtVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                  <div class="yt-thumb" style="background-image: url('assets/labs.jpg');">
+                    <div class="yt-play-btn"><i class="ti ti-player-play-filled"></i></div>
+                  </div>
+                  <div class="yt-caption">
+                    <h4 data-i18n="yt_v4_title">Advanced Science & STEM Labs</h4>
+                    <p data-i18n="yt_v4_desc">Witness scientific learning models and research laboratories in action.</p>
+                  </div>
+                </div>
+                <!-- Video 5 -->
+                <div class="yt-card" onclick="openYtVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                  <div class="yt-thumb" style="background-image: url('assets/library.jpg');">
+                    <div class="yt-play-btn"><i class="ti ti-player-play-filled"></i></div>
+                  </div>
+                  <div class="yt-caption">
+                    <h4 data-i18n="yt_v5_title">Smart Digital Library Tour</h4>
+                    <p data-i18n="yt_v5_desc">A walkthrough of our reading sections and massive digital archive.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="yt-nav-btn next" onclick="slideYtCarousel(1)" aria-label="Next videos">›</button>
+            </div>
+          </div>
+
+          <!-- Split Grid (Principal & Quick Info) -->
+          <div class="split-grid">
+            <div class="card">
+              <div class="section-title-wrap">
+                <i class="ti ti-user-circle"></i>
+                <h2 class="section-title" data-i18n="home_principal_title">Principal's Message</h2>
+              </div>
+              <div class="quote-card" id="principalHomeMsg">
+                "We believe that education is not merely acquiring knowledge, but building a solid character to lead with compassion and innovation. Welcome to the future of learning."
+              </div>
+              <p style="font-weight: 700; color: var(--night); margin-bottom: 2px;" id="principalHomeName">Dr. Sudha Ramachandran</p>
+              <p style="font-size: 12px; color: var(--slate);" id="principalHomeTitle">Principal, Kanpur Heritage International School</p>
+              <a href="#/about" class="btn btn-secondary" style="margin-top: 15px; padding: 6px 16px; font-size:12px;" data-i18n="btn_read_more">Read More</a>
+            </div>
+
+            <div class="card">
+              <div class="section-title-wrap">
+                <i class="ti ti-microscope"></i>
+                <h2 class="section-title" data-i18n="home_why_title">At a Glance</h2>
+              </div>
+              <div class="info-block">
+                <h3><i class="ti ti-trophy"></i> <span data-i18n="home_why_1_title">Top Academics & CBSE Curriculum</span></h3>
+                <p data-i18n="home_why_1_desc">Structured academic plan designed for deep conceptual understanding and state level ranking excellence.</p>
+              </div>
+              <div class="info-block">
+                <h3><i class="ti ti-palette"></i> <span data-i18n="home_why_2_title">Holistic Co-curricular Focus</span></h3>
+                <p data-i18n="home_why_2_desc">Comprehensive sports complexes, cultural societies, robotics club, and performing arts rooms.</p>
+              </div>
+              <div class="info-block">
+                <h3><i class="ti ti-shield-check"></i> <span data-i18n="home_why_3_title">Safe & Modern Infrastructure</span></h3>
+                <p data-i18n="home_why_3_desc">24/7 smart surveillance, high-end laboratories, AC digital classrooms, and smart transport GPS buses.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ABOUT SECTION ═══ -->
+      <section id="sec-about" class="scroll-section">
+        <div class="container">
+          <div class="view-header">
+            <h2 data-i18n="about_heading">About Our School</h2>
+            <p data-i18n="about_subheading">Founded on values, driven by innovation, built for academic excellence.</p>
+          </div>
+
+          <div class="split-grid">
+            <div class="card">
+              <div class="section-title-wrap">
+                <i class="ti ti-history"></i>
+                <h2 class="section-title" data-i18n="about_history_title">Our History</h2>
+              </div>
+              <p style="font-size: 13.5px; color: var(--slate); margin-bottom: 12px;" data-i18n="about_history_p1">
+                Established in 2001, Kanpur Heritage International School was born out of a vision to provide standard quality education to the children of Kanpur. Over the past two and a half decades, we have evolved into a leading educational landmark, nurturing young minds to excel globally.
+              </p>
+              <p style="font-size: 13.5px; color: var(--slate);" data-i18n="about_history_p2">
+                Our campus covers 5 acres of green, student-friendly landscape designed to stimulate creativity, discovery, and sportsmanship. We maintain an optimal student-teacher ratio to ensure individualized feedback and progress.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="section-title-wrap">
+                <i class="ti ti-compass"></i>
+                <h2 class="section-title" data-i18n="about_vision_title">Vision & Mission</h2>
+              </div>
+              <div class="info-block" style="margin-bottom: 20px;">
+                <h3 style="color:var(--orange); font-size:15px; margin-bottom:4px;"><i class="ti ti-eye"></i> <span data-i18n="about_vision_label">Vision Statement</span></h3>
+                <p data-i18n="about_vision_p">To be a pioneer in global education, cultivating moral leaders and responsible citizens.</p>
+              </div>
+              <div class="info-block">
+                <h3 style="color:var(--orange); font-size:15px; margin-bottom:4px;"><i class="ti ti-target"></i> <span data-i18n="about_mission_label">Mission Statement</span></h3>
+                <p data-i18n="about_mission_p">To deliver an integrated, experiential CBSE curriculum, ensuring state-of-the-art facilities.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Principal's Message -->
+          <div class="card">
+            <div class="section-title-wrap">
+              <i class="ti ti-award"></i>
+              <h2 class="section-title" data-i18n="about_principal_title">Principal's Address in Full</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: 180px 1fr; gap: 30px; align-items: start;" class="mobile-stack-columns">
+              <div class="hero-frame" style="width: 100%; aspect-ratio: 1; border-radius: var(--radius);">
+                <div class="hero-frame-bg" style="background-image: linear-gradient(to bottom, transparent, rgba(26,26,46,0.8)), url('assets/principal_portrait.jpg');"></div>
+                <span style="font-size: 50px; z-index: 1;">👩‍🏫</span>
+              </div>
+              <div>
+                <p class="quote-card" id="principalFullMsg">
+                  "Dear parents, students, and well-wishers, education at Kanpur Heritage is a journey of self-discovery and endless possibilities. We aim to inspire students to dream bigger, learn deeper, and contribute meaningfully to society. We invite you to join hands with us in co-creating a glorious future for our children."
+                </p>
+                <div style="margin-top: 15px;">
+                  <h4 style="font-size: 15px;" id="principalMsgName">Dr. Sudha Ramachandran</h4>
+                  <p style="font-size: 12px; color: var(--slate);" id="principalMsgTitle">Principal & Eminent Scholar, KHIS</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ACADEMICS SECTION ═══ -->
+      <section id="sec-academics" class="scroll-section">
+        <div class="container">
+          <div class="view-header">
+            <h2 data-i18n="academics_heading">Academics at KHIS</h2>
+            <p data-i18n="academics_subheading">We follow a balanced CBSE-aligned academic framework that prioritizes deep thinking.</p>
+          </div>
+
+          <div class="card" style="margin-bottom: 30px;">
+            <div class="section-title-wrap">
+              <i class="ti ti-book-open"></i>
+              <h2 class="section-title" data-i18n="acad_curr_title">Curriculum Structure</h2>
+            </div>
+            <div class="info-block">
+              <h3><i class="ti ti-toys"></i> <span data-i18n="acad_curr_1_title">Pre-Primary (Nursery - Prep)</span></h3>
+              <p data-i18n="acad_curr_1_desc">Play-way and theme-based cognitive development, focusing on motor skills, interactive learning, and language roots.</p>
+            </div>
+            <div class="info-block">
+              <h3><i class="ti ti-backpack"></i> <span data-i18n="acad_curr_2_title">Primary School (Grades I - V)</span></h3>
+              <p data-i18n="acad_curr_2_desc">Foundational skills in Mathematics, Sciences, English & Hindi, complemented by environmental studies and art integration.</p>
+            </div>
+            <div class="info-block">
+              <h3><i class="ti ti-certificate-2"></i> <span data-i18n="acad_curr_3_title">Middle & High School (Grades VI - X)</span></h3>
+              <p data-i18n="acad_curr_3_desc">Experiential labs, language proficiency, computing concepts, coding courses, and rigorous analytical syllabus prep.</p>
+            </div>
+            <div class="info-block">
+              <h3><i class="ti ti-school"></i> <span data-i18n="acad_curr_4_title">Senior Secondary (Grades XI - XII)</span></h3>
+              <p data-i18n="acad_curr_4_desc">Specialized streams (Science, Commerce, Humanities Stream) with focus on competitive entrance guidance and CBSE Board targets.</p>
+            </div>
+          </div>
+
+          <!-- Academic Downloads -->
+          <div class="card">
+            <div class="section-title-wrap">
+              <i class="ti ti-download"></i>
+              <h2 class="section-title" data-i18n="acad_download_title">Academic Downloads (Syllabus & Timetables)</h2>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+              <a href="#" class="info-block" style="background:var(--offwhite); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); display:flex; align-items:center; gap:10px; margin-bottom: 0 !important;">
+                <span style="font-size: 24px;">📄</span>
+                <div>
+                  <h4 style="font-size:12.5px; font-weight:700;" data-i18n="acad_dl_1">Primary Syllabus (Class I-V)</h4>
+                  <p style="font-size:10.5px; color:var(--slate);">PDF Document · 1.4 MB</p>
+                </div>
+              </a>
+              <a href="#" class="info-block" style="background:var(--offwhite); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); display:flex; align-items:center; gap:10px; margin-bottom: 0 !important;">
+                <span style="font-size: 24px;">📄</span>
+                <div>
+                  <h4 style="font-size:12.5px; font-weight:700;" data-i18n="acad_dl_2">Middle Syllabus (Class VI-VIII)</h4>
+                  <p style="font-size:10.5px; color:var(--slate);">PDF Document · 1.8 MB</p>
+                </div>
+              </a>
+              <a href="#" class="info-block" style="background:var(--offwhite); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); display:flex; align-items:center; gap:10px; margin-bottom: 0 !important;">
+                <span style="font-size: 24px;">📄</span>
+                <div>
+                  <h4 style="font-size:12.5px; font-weight:700;" data-i18n="acad_dl_3">Exam Syllabus (Class IX-XII)</h4>
+                  <p style="font-size:10.5px; color:var(--slate);">PDF Document · 2.1 MB</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ACTIVITIES SECTION ═══ -->
+      <section id="sec-activities" class="scroll-section">
+        <div class="container">
+          <div class="view-header">
+            <h2 data-i18n="activities_heading">Clubs & Activities</h2>
+            <p data-i18n="activities_subheading">We nurture talent beyond textbooks. Exploring creativity, sports, and tech.</p>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <!-- Sports -->
+            <div class="card" style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-size: 40px; margin-bottom: 5px;">⚽</span>
+              <h3 style="font-size:16px;" data-i18n="act_sports_title">Sports & Athletics</h3>
+              <p style="font-size:13px; color:var(--slate);" data-i18n="act_sports_desc">Olympic-standard 400m turf running track, indoor badminton complex, basketball courts, synthetic lawn tennis arenas, and trained professional sports coaches.</p>
+            </div>
+
+            <!-- Robotics -->
+            <div class="card" style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-size: 40px; margin-bottom: 5px;">🤖</span>
+              <h3 style="font-size:16px;" data-i18n="act_robo_title">Robotics & Innovation Club</h3>
+              <p style="font-size:13px; color:var(--slate);" data-i18n="act_robo_desc">Hands-on micro-controller coding, IoT automation sensors, autonomous vehicle modeling, and regular delegations to national science fairs and IIT competitions.</p>
+            </div>
+
+            <!-- Performing Arts -->
+            <div class="card" style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-size: 40px; margin-bottom: 5px;">🎭</span>
+              <h3 style="font-size:16px;" data-i18n="act_arts_title">Performing Arts & Drama</h3>
+              <p style="font-size:13px; color:var(--slate);" data-i18n="act_arts_desc">Classical Indian classical dance training (Kathak/Bharatanatyam), vocal music theater, instrumental orchestra setup, and theatrical stage drama groups.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ MEDIA GALLERY SECTION ═══ -->
+      <section id="sec-gallery" class="scroll-section">
+        <div class="container">
+          <div class="view-header">
+            <h2 data-i18n="gallery_heading">School Media Gallery</h2>
+            <p data-i18n="gallery_subheading">Moments of joy, achievement, and learning at Kanpur Heritage International School.</p>
+          </div>
+
+          <div class="filter-bar">
+            <div class="categories-wrap" id="galleryFilterBtnWrap">
+              <button class="filter-btn active" data-category="all" data-i18n="filter_all">All Albums</button>
+              <button class="filter-btn" data-category="Sports" data-i18n="filter_sports">Sports</button>
+              <button class="filter-btn" data-category="Cultural" data-i18n="filter_cultural">Cultural Events</button>
+              <button class="filter-btn" data-category="Exhibitions" data-i18n="filter_exhibitions">Exhibitions</button>
+            </div>
+            <!-- Year -->
+            <select class="form-input" style="padding: 6px 14px; border-radius: 20px; font-weight:600;" id="galleryYearFilter" onchange="filterGalleryAlbums()">
+              <option value="all" data-i18n="filter_all_years">All Years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+            </select>
+          </div>
+
+          <!-- Grid -->
+          <div class="gallery-grid" id="albumsContainer">
+            <!-- Dynamic album cards -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ NOTICES SECTION ═══ -->
+      <section id="sec-notices" class="scroll-section">
+        <div class="container">
+          <div class="view-header">
+            <h2 data-i18n="notices_heading">School Notices & Circulars</h2>
+            <p data-i18n="notices_subheading">Stay informed with the latest declarations, examinations schedulers, and circulars.</p>
+          </div>
+
+          <div class="filter-bar">
+            <div class="categories-wrap" id="noticeFilterBtnWrap">
+              <button class="filter-btn active" data-category="all" data-i18n="filter_all">All</button>
+              <button class="filter-btn" data-category="Admissions" data-i18n="filter_notice_admissions">Admissions</button>
+              <button class="filter-btn" data-category="Examinations" data-i18n="filter_notice_exams">Examinations</button>
+              <button class="filter-btn" data-category="Circulars" data-i18n="filter_notice_circulars">Circulars</button>
+              <button class="filter-btn" data-category="Events" data-i18n="filter_notice_events">Events</button>
+            </div>
+          </div>
+
+          <div class="notice-list" id="noticesFullBoard">
+            <!-- Dynamic notices -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ACHIEVEMENTS SECTION ═══ -->
+      <section id="sec-achievements" class="scroll-section">
+        <div class="container">
+          <div class="view-header">
+            <h2 data-i18n="achievements_heading">Our Proud Achievements</h2>
+            <p data-i18n="achievements_subheading">Celebrating our toppers, champion athletes, and innovators who make us proud.</p>
+          </div>
+
+          <div class="achievements-grid" id="achievementsContainer">
+            <!-- Dynamic achievements -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ CONTACT SECTION ═══ -->
+      <section id="sec-contact" class="scroll-section">
+        <div class="container">
+          <div class="view-header">
+            <h2 data-i18n="contact_heading">Contact Us</h2>
+            <p data-i18n="contact_subheading">Have questions? We would love to hear from you. Get in touch with our team.</p>
+          </div>
+
+          <div class="contact-layout">
+            <div class="card">
+              <div class="section-title-wrap">
+                <i class="ti ti-mail-opened"></i>
+                <h2 class="section-title" data-i18n="contact_form_title">General Enquiry Form</h2>
+              </div>
+              <form id="enquiryForm" onsubmit="handleEnquirySubmit(event)" style="display:flex; flex-direction:column; gap:12px;">
+                <div class="form-field">
+                  <label for="enqName" data-i18n="lbl_name">Full Name</label>
+                  <input type="text" id="enqName" class="form-input" required placeholder="e.g. Rahul Mishra">
+                </div>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="enqPhone" data-i18n="lbl_phone">Phone Number</label>
+                    <input type="tel" id="enqPhone" class="form-input" required placeholder="e.g. +91 98765 43210">
+                  </div>
+                  <div class="form-field">
+                    <label for="enqEmail" data-i18n="lbl_email">Email Address</label>
+                    <input type="email" id="enqEmail" class="form-input" required placeholder="e.g. rahul@domain.com">
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="enqSubject" data-i18n="lbl_subject">Subject</label>
+                  <input type="text" id="enqSubject" class="form-input" required placeholder="e.g. Admission Enquiry for Class 5">
+                </div>
+                <div class="form-field">
+                  <label for="enqMessage" data-i18n="lbl_message">Your Message</label>
+                  <textarea id="enqMessage" class="form-input" style="height: 100px; resize: none;" required placeholder="Describe your query..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top:8px;" data-i18n="btn_submit_enq">Send Enquiry</button>
+              </form>
+            </div>
+
+            <!-- Contact info and map -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <div class="card">
+                <div class="section-title-wrap">
+                  <i class="ti ti-headset"></i>
+                  <h2 class="section-title" data-i18n="contact_details_title">School Office Details</h2>
+                </div>
+                <div class="office-contact-row">
+                  <i class="ti ti-map-pin"></i>
+                  <span id="contactAddressText">12/A, Mall Road, VIP Road Crossing, Kanpur, UP - 208001</span>
+                </div>
+                <div class="office-contact-row">
+                  <i class="ti ti-phone"></i>
+                  <span>+91 512 298 7654</span>
+                </div>
+                <div class="office-contact-row">
+                  <i class="ti ti-mail"></i>
+                  <span>info@kanpurheritage.edu.in</span>
+                </div>
+                <div class="office-contact-row">
+                  <i class="ti ti-clock"></i>
+                  <span data-i18n="office_timings">Office Hours: Monday - Saturday: 8:00 AM - 2:00 PM</span>
+                </div>
+              </div>
+
+              <!-- Map -->
+              <div class="map-wrapper">
+                <iframe class="map-iframe" id="schoolMapEmbed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.2982845648797!2d80.34720967520775!3d26.478335076910685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c47087b7a6357%3A0xe5f9b4b0ed1bf1!2sMall%20Rd%2C%20Kanpur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1716480000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div> <!-- ── END PUBLIC SCROLLER ── -->
+
+    <!-- ═══ ADMISSIONS SECTION (SEPARATE VIEW) ═══ -->
+    <section id="view-admissions" class="view-section">
+      <div class="container">
+        
+        <!-- Closed -->
+        <div id="admissionsClosedScreen" class="admissions-closed-card" style="display:none;">
+          <div class="closed-icon">🔒</div>
+          <h2 class="closed-title" data-i18n="closed_title">Admissions are Currently Closed</h2>
+          <p class="closed-desc" data-i18n="closed_desc">Online registrations for the current academic session have concluded. Please get in touch with the school administration block or submit an inquiry for prospective openings.</p>
+          <a href="#/contact" class="btn btn-primary" data-i18n="btn_inquire_now">Submit Inquiry</a>
+        </div>
+
+        <!-- Open step wizard -->
+        <div id="admissionsOpenScreen" class="wizard-container">
+          <div class="view-header">
+            <h2 data-i18n="adm_heading">Online Admission Portal</h2>
+            <p data-i18n="adm_subheading">Please fill in the application form carefully. Fields marked with * are required.</p>
+          </div>
+
+          <!-- Steps -->
+          <div class="wizard-steps">
+            <div class="wizard-progress-bar" id="wizardProgress"></div>
+            <div class="wizard-step active" id="wStep-1">
+              1 <span class="wizard-step-label" data-i18n="adm_s1_label">Candidate Details</span>
+            </div>
+            <div class="wizard-step" id="wStep-2">
+              2 <span class="wizard-step-label" data-i18n="adm_s2_label">Parent Information</span>
+            </div>
+            <div class="wizard-step" id="wStep-3">
+              3 <span class="wizard-step-label" data-i18n="adm_s3_label">Document Upload</span>
+            </div>
+            <div class="wizard-step" id="wStep-4">
+              4 <span class="wizard-step-label" data-i18n="adm_s4_label">Form Review</span>
+            </div>
+          </div>
+
+          <form id="admissionApplicationForm" onsubmit="handleAdmissionSubmit(event)">
+            <!-- Step 1 -->
+            <div class="card form-step active" id="formStep-1">
+              <div class="section-title-wrap">
+                <i class="ti ti-id-badge"></i>
+                <h3 class="section-title" data-i18n="adm_s1_title">Student Personal Information</h3>
+              </div>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="admStudentName"><span data-i18n="adm_s1_name">Student Full Name</span> *</label>
+                  <input type="text" id="admStudentName" class="form-input" required placeholder="e.g. Aarav Mishra">
+                </div>
+                <div class="form-field">
+                  <label for="admStudentDOB"><span data-i18n="adm_s1_dob">Date of Birth</span> *</label>
+                  <input type="date" id="admStudentDOB" class="form-input" required>
+                </div>
+                <div class="form-field">
+                  <label for="admStudentGender"><span data-i18n="adm_s1_gender">Gender</span> *</label>
+                  <select id="admStudentGender" class="form-input" required>
+                    <option value="" disabled selected data-i18n="opt_select">Select gender</option>
+                    <option value="Male" data-i18n="opt_male">Male</option>
+                    <option value="Female" data-i18n="opt_female">Female</option>
+                    <option value="Other" data-i18n="opt_other">Other</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="admGradeApplied"><span data-i18n="adm_s1_grade">Grade Applied For</span> *</label>
+                  <select id="admGradeApplied" class="form-input" required>
+                    <option value="" disabled selected data-i18n="opt_select_grade">Select grade</option>
+                    <option value="Nursery">Nursery</option>
+                    <option value="Prep">Prep</option>
+                    <option value="Grade 1">Grade 1</option>
+                    <option value="Grade 2">Grade 2</option>
+                    <option value="Grade 3">Grade 3</option>
+                    <option value="Grade 4">Grade 4</option>
+                    <option value="Grade 5">Grade 5</option>
+                    <option value="Grade 6">Grade 6</option>
+                    <option value="Grade 7">Grade 7</option>
+                    <option value="Grade 8">Grade 8</option>
+                    <option value="Grade 9">Grade 9</option>
+                    <option value="Grade 11">Grade 11</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="card form-step" id="formStep-2">
+              <div class="section-title-wrap">
+                <i class="ti ti-users-group"></i>
+                <h3 class="section-title" data-i18n="adm_s2_title">Parent / Guardian Information</h3>
+              </div>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="admParentName"><span data-i18n="adm_s2_name">Father / Guardian Full Name</span> *</label>
+                  <input type="text" id="admParentName" class="form-input" required placeholder="e.g. Amit Mishra">
+                </div>
+                <div class="form-field">
+                  <label for="admMotherName"><span data-i18n="adm_s2_mother">Mother Full Name</span> *</label>
+                  <input type="text" id="admMotherName" class="form-input" required placeholder="e.g. Kavita Mishra">
+                </div>
+                <div class="form-field">
+                  <label for="admPhone"><span data-i18n="adm_s2_phone">Contact Phone Number</span> *</label>
+                  <input type="tel" id="admPhone" class="form-input" required placeholder="e.g. +91 98765 43210">
+                </div>
+                <div class="form-field">
+                  <label for="admEmail"><span data-i18n="adm_s2_email">Parent Email Address</span> *</label>
+                  <input type="email" id="admEmail" class="form-input" required placeholder="e.g. amit@domain.com">
+                </div>
+                <div class="form-field full-width">
+                  <label for="admAddress"><span data-i18n="adm_s2_address">Residential Address</span> *</label>
+                  <input type="text" id="admAddress" class="form-input" required placeholder="House No, Locality, Area, Kanpur">
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="card form-step" id="formStep-3">
+              <div class="section-title-wrap">
+                <i class="ti ti-upload"></i>
+                <h3 class="section-title" data-i18n="adm_s3_title">Upload Necessary Proofs</h3>
+              </div>
+              <p style="font-size:12.5px; color:var(--slate); margin-bottom:15px;" data-i18n="adm_s3_sub">Upload digital files (PDF, JPG, PNG) supporting the application. Maximum size: 2MB each.</p>
+              
+              <div class="form-grid">
+                <div class="form-field">
+                  <label data-i18n="doc_birth">1. Birth Certificate *</label>
+                  <div class="file-upload-card" onclick="triggerMockUpload('birthCert')">
+                    <i class="ti ti-file-text file-upload-icon"></i>
+                    <div class="file-upload-text">
+                      <h4 id="lbl-birthCert" data-i18n="doc_click_to_upload">Click to upload file</h4>
+                      <p data-i18n="doc_formats">PDF, PNG, JPG up to 2MB</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label data-i18n="doc_photo">2. Candidate Student Photo *</label>
+                  <div class="file-upload-card" onclick="triggerMockUpload('studentPhoto')">
+                    <i class="ti ti-photo file-upload-icon"></i>
+                    <div class="file-upload-text">
+                      <h4 id="lbl-studentPhoto" data-i18n="doc_click_to_upload">Click to upload file</h4>
+                      <p data-i18n="doc_formats_img">JPG, PNG up to 2MB</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="uploaded-files-list" id="uploadedFilesList" style="display:none;">
+                <!-- Dynamic upload rows -->
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="card form-step" id="formStep-4">
+              <div class="section-title-wrap">
+                <i class="ti ti-clipboard-check"></i>
+                <h3 class="section-title" data-i18n="adm_s4_title">Review Entered Details</h3>
+              </div>
+              <p style="font-size:12.5px; color:var(--slate); margin-bottom:15px;" data-i18n="adm_s4_sub">Verify that the details are exactly correct before clicking final submission.</p>
+              
+              <div class="review-box" id="admissionReviewBox">
+                <!-- JS populated -->
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="wizardBackBtn" onclick="navigateWizard(-1)" style="visibility:hidden;"><i class="ti ti-arrow-left"></i> <span data-i18n="btn_back">Back</span></button>
+              <button type="button" class="btn btn-primary" id="wizardNextBtn" onclick="navigateWizard(1)"><span data-i18n="btn_next">Next</span> <i class="ti ti-arrow-right"></i></button>
+              <button type="submit" class="btn btn-primary" id="wizardSubmitBtn" style="display:none; background:linear-gradient(135deg,var(--success),var(--night)); border-color:transparent; color:var(--white);"><span data-i18n="btn_submit_app">Submit Application</span> <i class="ti ti-check"></i></button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Receipt Screen -->
+        <div id="admissionsReceiptScreen" style="display:none;">
+          <div class="view-header">
+            <h2 data-i18n="receipt_header">Application Submitted!</h2>
+            <p data-i18n="receipt_subheader">Thank you. Your online admission application has been registered successfully.</p>
+          </div>
+          <div class="receipt-card" id="receiptCardContainer">
+            <!-- Dynamic receipt -->
+          </div>
+          <div style="text-align:center; margin-top:20px;">
+            <button class="btn btn-secondary" onclick="resetAdmissionPortal()"><i class="ti ti-refresh"></i> <span data-i18n="btn_new_app">Fill New Application</span></button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    </div> <!-- ── END PUBLIC SCROLLER ── -->
+
+    <!-- ═══ ADMIN PANEL VIEW (GATED AND KEPT SEPARATE) ═══ -->
+    <section id="view-admin" class="view-section">
+      <div class="container">
+        
+        <!-- Auth Screen Gate -->
+        <div class="card admin-auth-container" id="adminAuthScreen">
+          <div style="text-align:center; margin-bottom: 20px;">
+            <span style="font-size:40px;">🔐</span>
+            <h2 style="font-size:18px; margin-top:10px;" data-i18n="admin_auth_title">Secure CMS Login</h2>
+            <p style="font-size:12px; color:var(--slate);" data-i18n="admin_auth_sub">Enter administrator password to enter dashboard</p>
+          </div>
+          <form onsubmit="handleAdminLogin(event)" style="display:flex; flex-direction:column; gap:12px;">
+            <div class="form-field">
+              <label for="adminPassword" data-i18n="lbl_admin_pass">Password</label>
+              <input type="password" id="adminPassword" class="form-input" required placeholder="Enter password (default: admin)">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;" data-i18n="btn_login">Login Dashboard</button>
+          </form>
+        </div>
+
+        <!-- Dashboard Layout -->
+        <div class="admin-layout" id="adminDashboardLayout" style="display:none;">
+          <!-- Sidebar -->
+          <div class="admin-sidebar">
+            <div class="admin-user-profile">
+              <div class="admin-profile-name" id="adminUserDisplayName">Administrator</div>
+              <div class="admin-profile-role" id="adminUserDisplayRole">Super Admin</div>
+            </div>
+            
+            <div class="admin-sidebar-nav">
+              <button class="admin-sidebar-btn active" data-view="admin-ov" onclick="switchAdminSubView('admin-ov', this)"><i class="ti ti-chart-bar"></i> Overview</button>
+              <button class="admin-sidebar-btn" data-view="admin-notices" onclick="switchAdminSubView('admin-notices', this)"><i class="ti ti-bell"></i> Manage Notices</button>
+              <button class="admin-sidebar-btn" data-view="admin-events" onclick="switchAdminSubView('admin-events', this)"><i class="ti ti-calendar"></i> Manage Events</button>
+              <button class="admin-sidebar-btn" data-view="admin-apps" onclick="switchAdminSubView('admin-apps', this)"><i class="ti ti-forms"></i> Admissions Form</button>
+              <button class="admin-sidebar-btn" data-view="admin-settings" onclick="switchAdminSubView('admin-settings', this)"><i class="ti ti-settings"></i> Site Settings</button>
+            </div>
+
+            <div class="admin-logout-btn">
+              <button class="admin-sidebar-btn" style="color:var(--danger); width:100%;" onclick="handleAdminLogout()"><i class="ti ti-logout"></i> Logout</button>
+            </div>
+          </div>
+
+          <!-- Workspace panel content -->
+          <div class="admin-main-panel">
+            
+            <!-- SUB-VIEW: OVERVIEW -->
+            <div class="admin-view-panel active" id="admin-ov">
+              <div class="section-title-wrap" style="margin-bottom:20px;">
+                <i class="ti ti-dashboard"></i>
+                <h3 class="section-title">CMS Dashboard Overview</h3>
+              </div>
+
+              <!-- Stats Cards -->
+              <div class="admin-stats-grid">
+                <div class="admin-stat-card">
+                  <div class="admin-stat-info">
+                    <h4>Total Applications</h4>
+                    <p id="statAppCount">2</p>
+                  </div>
+                  <div class="admin-stat-icon">📋</div>
+                </div>
+                <div class="admin-stat-card">
+                  <div class="admin-stat-info">
+                    <h4>Active Notices</h4>
+                    <p id="statNoticeCount">4</p>
+                  </div>
+                  <div class="admin-stat-icon">📣</div>
+                </div>
+                <div class="admin-stat-card">
+                  <div class="admin-stat-info">
+                    <h4>Calendar Events</h4>
+                    <p id="statEventCount">5</p>
+                  </div>
+                  <div class="admin-stat-icon">📅</div>
+                </div>
+                <div class="admin-stat-card">
+                  <div class="admin-stat-info">
+                    <h4>Gallery Albums</h4>
+                    <p id="statAlbumCount">3</p>
+                  </div>
+                  <div class="admin-stat-icon">🖼️</div>
+                </div>
+              </div>
+
+              <!-- Admissions switch toggle panel -->
+              <div class="admin-switch-container">
+                <div class="admin-switch-text">
+                  <h3>Admissions Open/Closed Control</h3>
+                  <p>Toggle the master state of the admissions page and form wizard instantly.</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="admissionsStatusToggle" onchange="toggleAdmissionsStatusState(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <!-- Admin access tier panel -->
+              <div class="card">
+                <h4 style="font-size:14px; margin-bottom:12px;">Administrative Tier Selector (Simulated role switching)</h4>
+                <div class="swatch-row" style="margin-top:0;">
+                  <button class="filter-btn active" style="padding:6px 12px; font-size:11.5px;" onclick="setAdminTier('Super Admin')">Super Admin</button>
+                  <button class="filter-btn" style="padding:6px 12px; font-size:11.5px;" onclick="setAdminTier('Content Editor')">Content Editor</button>
+                </div>
+                <p style="font-size:11.5px; color:var(--slate); margin-top:8px;">* Note: Content Editors are restricted from changing Site Settings or database toggles.</p>
+              </div>
+            </div>
+
+            <!-- SUB-VIEW: NOTICES -->
+            <div class="admin-view-panel" id="admin-notices">
+              <div class="admin-action-bar">
+                <div class="section-title-wrap" style="margin:0;">
+                  <i class="ti ti-bell"></i>
+                  <h3 class="section-title">Manage Notices</h3>
+                </div>
+                <button class="btn btn-primary" style="padding: 6px 16px; font-size: 12px;" onclick="openNoticeModal()"><i class="ti ti-plus"></i> Add New Notice</button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Category</th>
+                      <th>Title (EN)</th>
+                      <th>Title (HI)</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminNoticesTableBody">
+                    <!-- Dynamic notices -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUB-VIEW: EVENTS -->
+            <div class="admin-view-panel" id="admin-events">
+              <div class="admin-action-bar">
+                <div class="section-title-wrap" style="margin:0;">
+                  <i class="ti ti-calendar"></i>
+                  <h3 class="section-title">Manage Calendar Events</h3>
+                </div>
+                <button class="btn btn-primary" style="padding: 6px 16px; font-size: 12px;" onclick="openEventModal()"><i class="ti ti-plus"></i> Add New Event</button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Category</th>
+                      <th>Title (EN)</th>
+                      <th>Location</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminEventsTableBody">
+                    <!-- Dynamic events -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUB-VIEW: APPLICATIONS -->
+            <div class="admin-view-panel" id="admin-apps">
+              <div class="admin-action-bar">
+                <div class="section-title-wrap" style="margin:0;">
+                  <i class="ti ti-forms"></i>
+                  <h3 class="section-title">Admission Applications Registry</h3>
+                </div>
+                <button class="btn btn-secondary" style="padding: 6px 16px; font-size: 12px; background-color: var(--success-bg); color: var(--success); border-color: rgba(59,109,17,0.25);" onclick="exportApplicationsToCSV()"><i class="ti ti-download"></i> Export CSV Data</button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Ref Number</th>
+                      <th>Student Name</th>
+                      <th>Grade</th>
+                      <th>Parent Phone</th>
+                      <th>Submitted On</th>
+                      <th>Status</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminApplicationsTableBody">
+                    <!-- Dynamic applications -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SUB-VIEW: SETTINGS -->
+            <div class="admin-view-panel" id="admin-settings">
+              <div class="section-title-wrap" style="margin-bottom:20px;">
+                <i class="ti ti-settings"></i>
+                <h3 class="section-title">Global Site Settings</h3>
+              </div>
+
+              <div class="card" id="adminSettingsFormCard">
+                <form onsubmit="handleSettingsUpdate(event)" style="display:flex; flex-direction:column; gap:12px;">
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label for="setPhone">School Contact Phone</label>
+                      <input type="text" id="setPhone" class="form-input" required value="+91 512 298 7654">
+                    </div>
+                    <div class="form-field">
+                      <label for="setEmail">School Contact Email</label>
+                      <input type="email" id="setEmail" class="form-input" required value="info@kanpurheritage.edu.in">
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <label for="setAddressEn">School Address (English)</label>
+                    <input type="text" id="setAddressEn" class="form-input" required value="12/A, Mall Road, VIP Road Crossing, Kanpur, Uttar Pradesh - 208001">
+                  </div>
+                  <div class="form-field">
+                    <label for="setAddressHi">School Address (Hindi)</label>
+                    <input type="text" id="setAddressHi" class="form-input" required value="12/ए, मॉल रोड, वीआईपी रोड क्रॉसिंग, कानपुर, उत्तर प्रदेश - 208001">
+                  </div>
+                  <div class="form-field">
+                    <label for="setMapPin">Google Maps Embed Embed Source Link</label>
+                    <input type="text" id="setMapPin" class="form-input" required value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.2982845648797!2d80.34720967520775!3d26.478335076910685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c47087b7a6357%3A0xe5f9b4b0ed1bf1!2sMall%20Rd%2C%20Kanpur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1716480000000!5m2!1sen!2sin">
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="margin-top:10px;"><i class="ti ti-device-floppy"></i> Save System Settings</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1 -->
+        <div class="footer-col">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">🏫</div>
+            <div class="footer-logo-text">
+              <h2 data-i18n="school_name">Kanpur Heritage</h2>
+              <p style="font-size:9.5px; color:var(--sunburst); letter-spacing:0.04em;" data-i18n="school_sub">International School</p>
+            </div>
+          </div>
+          <p data-i18n="footer_about">Dedicated to fostering excellence in conceptual thought, artistic growth, and moral character. Educating generations for standard global success.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-circle"><i class="ti ti-brand-facebook"></i></a>
+            <a href="#" class="social-circle"><i class="ti ti-brand-twitter"></i></a>
+            <a href="#" class="social-circle"><i class="ti ti-brand-youtube"></i></a>
+            <a href="#" class="social-circle"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+        </div>
+        
+        <!-- Col 2 -->
+        <div class="footer-col">
+          <h3 data-i18n="footer_links_title">Quick Pathways</h3>
+          <ul class="footer-links">
+            <li><a href="#/home" data-i18n="nav_home">Home</a></li>
+            <li><a href="#/about" data-i18n="nav_about">About Us</a></li>
+            <li><a href="#/academics" data-i18n="nav_academics">Academics</a></li>
+            <li><a href="#/gallery" data-i18n="nav_gallery">Media Gallery</a></li>
+            <li><a href="#/notices" data-i18n="nav_notices">Notices</a></li>
+            <li><a href="#/admissions" data-i18n="nav_apply">Apply Now</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="footer-col">
+          <h3 data-i18n="footer_contact_title">Find Our Office</h3>
+          <div class="footer-contact-row">
+            <i class="ti ti-map-pin"></i>
+            <span id="footerAddressText">12/A, Mall Road, VIP Road Crossing, Kanpur, UP - 208001</span>
+          </div>
+          <div class="footer-contact-row">
+            <i class="ti ti-phone"></i>
+            <span>+91 512 298 7654</span>
+          </div>
+          <div class="footer-contact-row">
+            <i class="ti ti-mail"></i>
+            <span>info@kanpurheritage.edu.in</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Kanpur Heritage International School. <span data-i18n="footer_rights">All rights reserved.</span></p>
+        <p style="font-size:11px;">Designed with 💛 · <span data-i18n="footer_tagline">Kanpur, UP</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── MODAL: YOUTUBE VIDEO PLAYER ── -->
+  <div class="modal" id="ytVideoModal">
+    <div class="modal-content" style="max-width: 800px; padding: 0; background: #000; overflow: hidden; aspect-ratio: 16/9; border-radius: var(--radius-lg); border: 2px solid rgba(255,255,255,0.15);">
+      <button class="modal-close" onclick="closeYtVideoModal()" style="color: #fff; background: rgba(0,0,0,0.65); border-radius: 50%; width: 36px; height: 36px; top: 12px; right: 12px; z-index: 10; font-size: 20px; font-weight: 700;">×</button>
+      <iframe id="ytVideoPlayerIframe" style="width: 100%; height: 100%; border: none;" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- ── MODAL: ALBUM LIGHTBOX DIALOG ── -->
+  <div class="modal" id="lightboxModal">
+    <div class="modal-content lightbox-content">
+      <button class="modal-close" onclick="closeLightboxModal()">×</button>
+      <div class="lightbox-image-wrap">
+        <img src="" alt="Lightbox Zoom" id="lightboxImg" class="lightbox-img">
+      </div>
+      <div class="lightbox-caption" id="lightboxCaption">Media Zoom Caption</div>
+    </div>
+  </div>
+
+  <!-- ── MODAL: CALENDAR EVENT DETAIL ── -->
+  <div class="modal" id="calendarEventModal">
+    <div class="modal-content" style="max-width: 480px;">
+      <button class="modal-close" onclick="closeCalendarEventModal()">×</button>
+      <div class="modal-header">
+        <h3 id="calModalTitle">Parent Teacher Meeting</h3>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:13px; color:var(--orange);">
+          <i class="ti ti-calendar-event"></i> <span id="calModalDate">May 24, 2026</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:13px; color:var(--slate);">
+          <i class="ti ti-map-pin"></i> <span id="calModalLocation">School Assembly Hall</span>
+        </div>
+        <p style="font-size:13.5px; color:var(--slate); line-height:1.55;" id="calModalDesc">Detail description of this school event.</p>
+      </div>
+      <div class="modal-footer" style="padding:12px 24px;">
+        <button class="btn btn-primary" style="padding:6px 14px; font-size:11.5px;" id="calModalExportBtn">Export to Calendar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MODAL: CREATE / EDIT NOTICE ── -->
+  <div class="modal" id="adminNoticeModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeNoticeModal()">×</button>
+      <div class="modal-header">
+        <h3 id="noticeModalHeadline">Add New Notice</h3>
+      </div>
+      <form id="adminNoticeForm" onsubmit="saveNoticeItem(event)">
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:12px;">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="notDate">Notice Date *</label>
+              <input type="date" id="notDate" class="form-input" required>
+            </div>
+            <div class="form-field">
+              <label for="notCategory">Category *</label>
+              <select id="notCategory" class="form-input" required>
+                <option value="Admissions">Admissions</option>
+                <option value="Examinations">Examinations</option>
+                <option value="Circulars">Circulars</option>
+                <option value="Events">Events</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="notTitleEn">Notice Title (English) *</label>
+            <input type="text" id="notTitleEn" class="form-input" required placeholder="e.g. CBSE Practical Schedule for Grade XII">
+          </div>
+          <div class="form-field">
+            <label for="notTitleHi">Notice Title (Hindi) *</label>
+            <input type="text" id="notTitleHi" class="form-input" required placeholder="उदा. बारहवीं कक्षा के लिए सीबीएसई प्रैक्टिकल समय सारणी">
+          </div>
+          <div class="form-field">
+            <label for="notContentEn">Notice Content (English) *</label>
+            <textarea id="notContentEn" class="form-input" style="height:80px; resize:none;" required placeholder="Describe notice..."></textarea>
+          </div>
+          <div class="form-field">
+            <label for="notContentHi">Notice Content (Hindi) *</label>
+            <textarea id="notContentHi" class="form-input" style="height:80px; resize:none;" required placeholder="सूचना का विवरण हिंदी में लिखें..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="closeNoticeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="padding:6px 14px; font-size:12px;">Save Notice</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── MODAL: CREATE / EDIT EVENT ── -->
+  <div class="modal" id="adminEventModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeEventModal()">×</button>
+      <div class="modal-header">
+        <h3 id="eventModalHeadline">Add New Calendar Event</h3>
+      </div>
+      <form id="adminEventForm" onsubmit="saveEventItem(event)">
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:12px;">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="eveDate">Event Date *</label>
+              <input type="date" id="eveDate" class="form-input" required>
+            </div>
+            <div class="form-field">
+              <label for="eveCategory">Category *</label>
+              <select id="eveCategory" class="form-input" required>
+                <option value="Meeting">Meeting</option>
+                <option value="Holiday">Holiday</option>
+                <option value="Activity">Activity</option>
+                <option value="Celebration">Celebration</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="eveTitleEn">Event Title (English) *</label>
+            <input type="text" id="eveTitleEn" class="form-input" required placeholder="e.g. World Environment Day">
+          </div>
+          <div class="form-field">
+            <label for="eveTitleHi">Event Title (Hindi) *</label>
+            <input type="text" id="eveTitleHi" class="form-input" required placeholder="उदा. विश्व पर्यावरण दिवस">
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="eveLocEn">Location (English) *</label>
+              <input type="text" id="eveLocEn" class="form-input" required placeholder="e.g. School Botanical Garden">
+            </div>
+            <div class="form-field">
+              <label for="eveLocHi">Location (Hindi) *</label>
+              <input type="text" id="eveLocHi" class="form-input" required placeholder="उदा. स्कूल बॉटनिकल गार्डन">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="eveDescEn">Event Description (English) *</label>
+            <textarea id="eveDescEn" class="form-input" style="height:80px; resize:none;" required placeholder="Describe event..."></textarea>
+          </div>
+          <div class="form-field">
+            <label for="eveDescHi">Event Description (Hindi) *</label>
+            <textarea id="eveDescHi" class="form-input" style="height:80px; resize:none;" required placeholder="घटना का विवरण हिंदी में लिखें..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="closeEventModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="padding:6px 14px; font-size:12px;">Save Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── MODAL: VIEW SUBMITTED APPLICATION DETAILS ── -->
+  <div class="modal" id="adminAppDetailModal">
+    <div class="modal-content" style="max-width: 640px;">
+      <button class="modal-close" onclick="closeAppDetailModal()">×</button>
+      <div class="modal-header">
+        <h3>Application Record Detail</h3>
+      </div>
+      <div class="modal-body" id="adminAppDetailBody" style="display:flex; flex-direction:column; gap:16px;">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="closeAppDetailModal()">Close Detail</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Files Load -->
+  <script src="mockData.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

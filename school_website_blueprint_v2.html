@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Website Blueprint v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Primary Brand */
+    --sunburst:  #FFD037;
+    --amber:     #F5A623;
+    --orange:    #E8700A;
+    --white:     #FFFFFF;
+    /* Neutral Text */
+    --night:     #1A1A2E;
+    --slate:     #4A4A6A;
+    --offwhite:  #F7F4EF;
+    --cream:     #FFF8E7;
+    /* UI Utility */
+    --border:    rgba(26,26,46,.10);
+    --shadow:    0 2px 16px rgba(26,26,46,.08);
+    --radius:    12px;
+    --radius-sm: 7px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--offwhite);
+    color: var(--night);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .blueprint-header {
+    background: linear-gradient(135deg, var(--night) 0%, #2a2a4e 100%);
+    padding: 28px 28px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .blueprint-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(245,166,35,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-inner {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .header-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--sunburst), var(--amber));
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(245,166,35,.4);
+  }
+  .header-text h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--white);
+    letter-spacing: -.02em;
+    line-height: 1.2;
+  }
+  .header-text p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,.55);
+    margin-top: 3px;
+  }
+  .header-chips {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-left: auto; padding-bottom: 4px;
+  }
+  .hchip {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,.7);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .hchip span { color: var(--amber); }
+
+  /* ── TABS ── */
+  .tabs-bar {
+    background: var(--night);
+    padding: 0 28px;
+    display: flex; gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: relative;
+    z-index: 2;
+  }
+  .tabs-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 13px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,.45);
+    background: transparent;
+    border: none; border-bottom: 2.5px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .18s, border-color .18s;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,.75); }
+  .tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
+  .tab-btn i { font-size: 15px; }
+
+  /* ── BODY ── */
+  .blueprint-body { padding: 24px 28px 40px; }
+  .panel { display: none; animation: fadeUp .22s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+  .panel-heading { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 700; color: var(--night); margin-bottom: 4px; }
+  .panel-sub { font-size: 13px; color: var(--slate); margin-bottom: 20px; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .section-label {
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .09em;
+    color: var(--orange);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .section-label::after {
+    content: ''; flex: 1;
+    height: 1px; background: var(--border);
+  }
+
+  /* ── GRIDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  /* ── TREE ROWS ── */
+  .tree-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .tree-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .tree-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .tree-title { font-size: 13.5px; font-weight: 600; color: var(--night); margin-bottom: 2px; }
+  .tree-sub { font-size: 12px; color: var(--slate); line-height: 1.5; }
+
+  /* ── FEATURE CARDS ── */
+  .feat-card {
+    background: var(--cream);
+    border: 1px solid rgba(245,166,35,.2);
+    border-radius: var(--radius);
+    padding: 16px 15px;
+    transition: transform .18s, box-shadow .18s, border-color .18s;
+    position: relative;
+    overflow: hidden;
+  }
+  .feat-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sunburst), var(--orange));
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .feat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(232,112,10,.15); border-color: var(--amber); }
+  .feat-icon { font-size: 28px; margin-bottom: 8px; }
+  .feat-title { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; color: var(--night); margin-bottom: 5px; }
+  .feat-desc { font-size: 12px; color: var(--slate); line-height: 1.55; }
+
+  /* ── SWATCHES ── */
+  .swatch-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .swatch { border-radius: 10px; width: 82px; text-align: center; }
+  .swatch-block { height: 54px; border-radius: 8px 8px 0 0; border: 1px solid rgba(0,0,0,.07); }
+  .swatch-label { font-size: 10.5px; color: var(--slate); padding: 5px 3px; background: var(--offwhite); border-radius: 0 0 8px 8px; border: 1px solid var(--border); border-top: none; line-height: 1.4; }
+
+  /* ── USAGE GUIDE ROWS ── */
+  .usage-row { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .usage-row:last-child { border-bottom: none; }
+  .usage-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+  .usage-name { font-size: 13px; font-weight: 600; color: var(--night); min-width: 120px; }
+  .usage-desc { font-size: 12px; color: var(--slate); line-height: 1.5; flex: 1; }
+
+  /* ── FLOW ── */
+  .flow-track { display: flex; align-items: center; flex-wrap: wrap; gap: 0; row-gap: 6px; }
+  .flow-box {
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 12.5px; font-weight: 500;
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    color: var(--night);
+    white-space: nowrap;
+  }
+  .flow-box.start { background: var(--cream); border-color: rgba(245,166,35,.4); color: #5C3200; font-weight: 700; }
+  .flow-box.end { background: linear-gradient(135deg, var(--sunburst), var(--amber)); color: var(--night); font-weight: 700; border-color: transparent; box-shadow: 0 2px 8px rgba(245,166,35,.35); }
+  .flow-box.admin-box { background: #1A1A2E; color: #fff; border-color: transparent; font-weight: 700; }
+  .flow-arrow { color: var(--amber); font-size: 18px; padding: 0 8px; flex-shrink: 0; }
+
+  /* ── ADMIN FIELDS ── */
+  .admin-field {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 13px;
+    border-radius: var(--radius-sm);
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    font-size: 13px; color: var(--slate);
+    margin-bottom: 7px;
+    transition: background .15s;
+  }
+  .admin-field:last-child { margin-bottom: 0; }
+  .admin-field:hover { background: var(--cream); }
+  .admin-field i { color: var(--amber); font-size: 15px; }
+
+  /* ── TECH ── */
+  .tech-row { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .tech-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .tech-badge {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px; font-weight: 700;
+    background: var(--night); color: var(--sunburst);
+    border-radius: 6px; padding: 3px 8px;
+    white-space: nowrap; flex-shrink: 0; min-width: 110px;
+    text-align: center;
+  }
+  .tech-role { font-size: 12.5px; color: var(--slate); line-height: 1.5; flex: 1; }
+
+  /* ── PILLS ── */
+  .pill-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+  .pill {
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px; color: var(--slate);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; padding: 5px 13px;
+    border-radius: 20px; font-weight: 500; margin: 3px;
+  }
+  .badge-warn { background: #FFF3D4; color: #7A4800; }
+  .badge-info { background: #E3EDF9; color: #0C447C; }
+  .badge-ok   { background: #E5F3DC; color: #3B6D11; }
+  .badge-coral{ background: #FAECE7; color: #712B13; }
+
+  /* ── ADMIN ACCESS TIER CARDS ── */
+  .tier-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .tier-card {
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--offwhite);
+  }
+  .tier-name { font-size: 13px; font-weight: 700; color: var(--night); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+  .tier-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .tier-desc { font-size: 11.5px; color: var(--slate); }
+
+  /* ── PHASE CARD ── */
+  .phase-note {
+    background: var(--cream);
+    border: 1px dashed rgba(245,166,35,.5);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-top: 14px;
+  }
+  .phase-title { font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; color: var(--orange); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .07em; }
+
+  @media (max-width: 680px) {
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .blueprint-body { padding: 18px 16px 36px; }
+    .tabs-bar { padding: 0 12px; }
+    .blueprint-header { padding: 20px 16px 0; }
+    .flow-track { flex-direction: column; align-items: flex-start; }
+    .flow-arrow { transform: rotate(90deg); }
+    .tier-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="blueprint-header">
+  <div class="header-inner">
+    <div class="header-icon">🏫</div>
+    <div class="header-text">
+      <h1>School Website Blueprint <span style="color:var(--amber)">v2</span></h1>
+      <p>Focused build · Phase 1 · Admin Panel Only</p>
+    </div>
+    <div class="header-chips">
+      <div class="hchip"><span>⬡</span> 6 Core Features</div>
+      <div class="hchip"><span>⬡</span> Admin Panel Only</div>
+      <div class="hchip"><span>⬡</span> Kanpur, UP</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="show('structure',this)"><i class="ti ti-sitemap"></i> Site Structure</button>
+  <button class="tab-btn" onclick="show('features',this)"><i class="ti ti-star"></i> Key Features</button>
+  <button class="tab-btn" onclick="show('palette',this)"><i class="ti ti-palette"></i> Colour Palette</button>
+  <button class="tab-btn" onclick="show('flow',this)"><i class="ti ti-arrows-right"></i> User Flow</button>
+  <button class="tab-btn" onclick="show('admin',this)"><i class="ti ti-settings"></i> Admin Panel</button>
+  <button class="tab-btn" onclick="show('tech',this)"><i class="ti ti-code"></i> Tech Stack</button>
+</div>
+
+<!-- BODY -->
+<div class="blueprint-body">
+
+  <!-- ═══ STRUCTURE ═══ -->
+  <div class="panel active" id="panel-structure">
+    <div class="panel-heading">Website Structure</div>
+    <div class="panel-sub">All public-facing pages and the single admin login area</div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <div class="section-label">Public Pages</div>
+          <div class="tree-row"><span class="tree-icon">🏠</span><div><div class="tree-title">Home</div><div class="tree-sub">Hero banner, live notice ticker, quick stats, highlights</div></div></div>
+          <div class="tree-row"><span class="tree-icon">🏫</span><div><div class="tree-title">About Us</div><div class="tree-sub">History, vision/mission, principal's message, accreditations</div></div></div>
+          <div class="tree-row"><span class="tree-icon">📚</span><div><div class="tree-title">Academics</div><div class="tree-sub">Curriculum, subjects, syllabus downloads, timetable</div></div></div>
+          <div class="tree-row"><span class="tree-icon">🎭</span><div><div class="tree-title">Activities</div><div class="tree-sub">Sports, clubs, cultural events, competitions</div></div></div>
+          <div class="tree-row"><span class="tree-icon">🖼️</span><div><div class="tree-title">Media Gallery</div><div class="tree-sub">Album-based photos & videos, filterable by year / event</div></div></div>
+          <div class="tree-row"><span class="tree-icon">📢</span><div><div class="tree-title">News & Events</div><div class="tree-sub">Blog posts, events calendar, circulars</div></div></div>
+          <div class="tree-row"><span class="tree-icon">📝</span><div><div class="tree-title">Admissions</div><div class="tree-sub">Online application form, eligibility, fee structure</div></div></div>
+          <div class="tree-row"><span class="tree-icon">🏆</span><div><div class="tree-title">Achievements</div><div class="tree-sub">Toppers, awards, alumni notable mentions</div></div></div>
+          <div class="tree-row"><span class="tree-icon">📞</span><div><div class="tree-title">Contact</div><div class="tree-sub">Map, enquiry form, staff directory</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="section-label">Gated Area — Admin Only</div>
+          <div class="tree-row"><span class="tree-icon">🔐</span><div><div class="tree-title">Admin Panel</div><div class="tree-sub">Full CMS: edit any page, manage content, upload media, post notices</div></div></div>
+        </div>
+        <div class="card">
+          <div class="section-label">Special / Utility Pages</div>
+          <div class="tree-row"><span class="tree-icon">🌐</span><div><div class="tree-title">Language Toggle</div><div class="tree-sub">Hindi ⇄ English — available site-wide via header switcher</div></div></div>
+          <div class="tree-row"><span class="tree-icon">📅</span><div><div class="tree-title">Events Calendar</div><div class="tree-sub">Full calendar page — holidays, exams, school events</div></div></div>
+          <div class="tree-row"><span class="tree-icon">🔍</span><div><div class="tree-title">Search / 404</div><div class="tree-sub">Global search results, friendly branded error page</div></div></div>
+        </div>
+        <div class="card" style="background:var(--cream); border-color:rgba(232,112,10,.2)">
+          <div class="section-label">Removed from Phase 1</div>
+          <div style="font-size:12.5px; color:var(--slate); line-height:1.7">
+            <div>🚫 &nbsp;Student Portal &amp; login</div>
+            <div>🚫 &nbsp;Parent Portal &amp; login</div>
+            <div>🚫 &nbsp;Teacher Portal &amp; login</div>
+            <div>🚫 &nbsp;Online Fee Payment</div>
+            <div>🚫 &nbsp;Result / Marks Portal</div>
+            <div>🚫 &nbsp;Push / SMS Notifications</div>
+            <div style="margin-top:8px; font-size:11.5px; color:var(--orange)">↳ Deferred to Phase 2 / future sprints</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FEATURES ═══ -->
+  <div class="panel" id="panel-features">
+    <div class="panel-heading">Key Features — Phase 1</div>
+    <div class="panel-sub">6 focused, high-impact features for the first launch</div>
+    <div class="grid3">
+
+      <div class="feat-card">
+        <div class="feat-icon">📣</div>
+        <div class="feat-title">Live Notice Board</div>
+        <div class="feat-desc">Scrolling ticker on the home page + full notices listing, filterable by category and date. Admin can post in seconds.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🌐</div>
+        <div class="feat-title">Multilingual (Hindi / English)</div>
+        <div class="feat-desc">One-click language toggle in the header. All pages, menus, and notices switch between Hindi and English instantly.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🖼️</div>
+        <div class="feat-title">Media Gallery</div>
+        <div class="feat-desc">Album-based photo &amp; video gallery with lazy loading. Albums organised by year and event category for easy browsing.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">📅</div>
+        <div class="feat-title">Events Calendar</div>
+        <div class="feat-desc">Monthly calendar view showing school holidays, exams, and events. Exportable to Google Calendar &amp; iOS Calendar.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">📱</div>
+        <div class="feat-title">Mobile-First Design</div>
+        <div class="feat-desc">Fully responsive layout built for phones first — most parents browse on mobile. Touch-friendly nav and fast load times.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">📝</div>
+        <div class="feat-title">Online Admission Form</div>
+        <div class="feat-desc">Multi-step application form with document upload support. Applicants receive a confirmation reference number on submission.</div>
+      </div>
+
+    </div>
+
+    <div class="phase-note">
+      <div class="phase-title">⏭ Deferred to Phase 2</div>
+      <div class="pill-row">
+        <span class="pill">💳 Online Fee Payment</span>
+        <span class="pill">📊 Student Result Portal</span>
+        <span class="pill">🔔 SMS / WhatsApp Alerts</span>
+        <span class="pill">🔒 Role-Based Login (Student / Parent / Teacher)</span>
+        <span class="pill">🔎 Global Search</span>
+        <span class="pill">♿ WCAG Accessibility Audit</span>
+        <span class="pill">🤖 AI Chatbot FAQ</span>
+        <span class="pill">📖 E-library</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PALETTE ═══ -->
+  <div class="panel" id="panel-palette">
+    <div class="panel-heading">Colour Palette</div>
+    <div class="panel-sub">Primary brand colours + supporting neutrals for text and backgrounds</div>
+
+    <div class="card">
+      <div class="section-label">Primary Brand Colours</div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FFD037"></div>
+          <div class="swatch-label">#FFD037<br><strong>Sunburst</strong></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F5A623"></div>
+          <div class="swatch-label">#F5A623<br><strong>Amber Gold</strong></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#E8700A"></div>
+          <div class="swatch-label">#E8700A<br><strong>Deep Orange</strong></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FFFFFF; border:1px solid #ddd"></div>
+          <div class="swatch-label">#FFFFFF<br><strong>Pure White</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Supporting Neutral Colours — Text &amp; Backgrounds</div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#1A1A2E"></div>
+          <div class="swatch-label">#1A1A2E<br><strong>Night Blue</strong></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#4A4A6A"></div>
+          <div class="swatch-label">#4A4A6A<br><strong>Slate Gray</strong></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F7F4EF; border:1px solid #ddd"></div>
+          <div class="swatch-label">#F7F4EF<br><strong>Warm Off-White</strong></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FFF8E7; border:1px solid #ddd"></div>
+          <div class="swatch-label">#FFF8E7<br><strong>Cream Tint</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Usage Guide</div>
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#FFD037; border: 1px solid #ddd;"></div>
+        <div class="usage-name">Sunburst / Gold</div>
+        <div class="usage-desc">Hero sections, CTA buttons, nav highlights, logo background — the dominant attention colour</div>
+      </div>
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#E8700A"></div>
+        <div class="usage-name">Deep Orange</div>
+        <div class="usage-desc">Hover states, section dividers, icon accents, active link underlines</div>
+      </div>
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#1A1A2E"></div>
+        <div class="usage-name">Night Blue</div>
+        <div class="usage-desc">All body text, headings, footer background — high contrast against warm tones</div>
+      </div>
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#4A4A6A"></div>
+        <div class="usage-name">Slate Gray</div>
+        <div class="usage-desc">Sub-headings, captions, meta text, icon labels — secondary text layer</div>
+      </div>
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#F7F4EF; border:1px solid #ccc;"></div>
+        <div class="usage-name">Warm Off-White</div>
+        <div class="usage-desc">Page background, card fills — warmer alternative to harsh white</div>
+      </div>
+      <div class="usage-row">
+        <div class="usage-dot" style="background:#FFF8E7; border:1px solid #ccc;"></div>
+        <div class="usage-name">Cream Tint</div>
+        <div class="usage-desc">Feature card backgrounds, notice board highlight, admission section tint</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FLOW ═══ -->
+  <div class="panel" id="panel-flow">
+    <div class="panel-heading">User Flow</div>
+    <div class="panel-sub">How visitors and the admin navigate through the site in Phase 1</div>
+
+    <div class="card">
+      <div class="section-label">Visitor / Prospective Parent (Public)</div>
+      <div class="flow-track">
+        <div class="flow-box start">Lands on Home</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box">Reads Notices / News</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box">Explores Academics / Gallery</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box end">Fills Admission Form ✓</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Event / Calendar Visitor</div>
+      <div class="flow-track">
+        <div class="flow-box start">Lands on Home</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box">Opens Events Calendar</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box">Views Event Detail</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box end">Exports to Google Calendar ✓</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Hindi-Speaking Visitor</div>
+      <div class="flow-track">
+        <div class="flow-box start">Lands on Home (EN)</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box">Clicks 🌐 Hindi Toggle</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box">Browses in Hindi</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box end">Submits Admission Form in Hindi ✓</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Admin / Content Editor</div>
+      <div class="flow-track">
+        <div class="flow-box admin-box">Admin Login</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box admin-box">Dashboard</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box admin-box">Edit / Publish Content</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-box admin-box">Changes Live Instantly ✓</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Key Decision Points</div>
+      <div class="pill-row">
+        <span class="badge badge-warn">📋 Admissions open? → Show form / Show "Applications Closed"</span>
+        <span class="badge badge-coral">📣 New notice posted? → Ticker auto-updates on home page</span>
+        <span class="badge badge-info">🌐 Language? → Persist choice in localStorage</span>
+        <span class="badge badge-ok">📱 Mobile device? → Hamburger nav activates automatically</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ADMIN ═══ -->
+  <div class="panel" id="panel-admin">
+    <div class="panel-heading">Admin Panel — Content CMS</div>
+    <div class="panel-sub">Single login for the school's content team — update everything without touching code</div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <div class="section-label">Content Management</div>
+          <div class="admin-field">Edit Hero Banner / Slider <i class="ti ti-edit"></i></div>
+          <div class="admin-field">Post / Manage Notices <i class="ti ti-bell"></i></div>
+          <div class="admin-field">Add / Edit News Posts <i class="ti ti-news"></i></div>
+          <div class="admin-field">Manage Events Calendar <i class="ti ti-calendar"></i></div>
+          <div class="admin-field">Upload Gallery Albums <i class="ti ti-photo"></i></div>
+          <div class="admin-field">Update About / Mission Text <i class="ti ti-file-text"></i></div>
+          <div class="admin-field">Edit Academic Pages <i class="ti ti-book"></i></div>
+          <div class="admin-field">Manage Achievements / Awards <i class="ti ti-trophy"></i></div>
+        </div>
+        <div class="card">
+          <div class="section-label">Admission Management</div>
+          <div class="admin-field">Open / Close Admissions Toggle <i class="ti ti-toggle-right"></i></div>
+          <div class="admin-field">View Submitted Applications <i class="ti ti-forms"></i></div>
+          <div class="admin-field">Download Applications (CSV) <i class="ti ti-download"></i></div>
+          <div class="admin-field">Update Eligibility Criteria Text <i class="ti ti-clipboard-text"></i></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="section-label">Multilingual Content</div>
+          <div class="admin-field">Edit Hindi Translations <i class="ti ti-language"></i></div>
+          <div class="admin-field">Preview Site in Hindi <i class="ti ti-eye"></i></div>
+          <div class="admin-field">Translate Notices (Hindi) <i class="ti ti-message-language"></i></div>
+        </div>
+        <div class="card">
+          <div class="section-label">Site Settings</div>
+          <div class="admin-field">Update Logo / Favicon <i class="ti ti-photo"></i></div>
+          <div class="admin-field">Edit Contact Info / Map Pin <i class="ti ti-map-pin"></i></div>
+          <div class="admin-field">SEO — Title &amp; Meta Tags <i class="ti ti-search"></i></div>
+          <div class="admin-field">View Analytics Dashboard <i class="ti ti-chart-bar"></i></div>
+          <div class="admin-field">Mark School Holidays <i class="ti ti-star"></i></div>
+          <div class="admin-field">Publish Timetables / Syllabus PDFs <i class="ti ti-upload"></i></div>
+        </div>
+        <div class="card">
+          <div class="section-label">Admin Access Tiers</div>
+          <div class="tier-row">
+            <div class="tier-card">
+              <div class="tier-name"><span class="tier-dot" style="background:#E8700A"></span>Super Admin</div>
+              <div class="tier-desc">Full access — settings, content, admissions, analytics</div>
+            </div>
+            <div class="tier-card">
+              <div class="tier-name"><span class="tier-dot" style="background:#F5A623"></span>Content Editor</div>
+              <div class="tier-desc">News, notices, gallery, calendar — no settings access</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TECH ═══ -->
+  <div class="panel" id="panel-tech">
+    <div class="panel-heading">Recommended Tech Stack</div>
+    <div class="panel-sub">Lean, modern, and budget-friendly — matched to Phase 1 scope</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="section-label">Frontend</div>
+        <div class="tech-row"><div class="tech-badge">Next.js 14</div><div class="tech-role">React framework — SSR for SEO, fast static pages, great for school sites</div></div>
+        <div class="tech-row"><div class="tech-badge">Tailwind CSS</div><div class="tech-role">Utility-first CSS — rapid build, easy to maintain brand colours</div></div>
+        <div class="tech-row"><div class="tech-badge">next-intl</div><div class="tech-role">Hindi ⇄ English i18n — JSON translation files, URL-based locale switching</div></div>
+        <div class="tech-row"><div class="tech-badge">Framer Motion</div><div class="tech-role">Notice board ticker, gallery transitions, scroll animations</div></div>
+        <div class="tech-row"><div class="tech-badge">FullCalendar</div><div class="tech-role">Events calendar component — monthly view, Google Calendar export</div></div>
+      </div>
+      <div class="card">
+        <div class="section-label">Backend / API</div>
+        <div class="tech-row"><div class="tech-badge">Node.js</div><div class="tech-role">API routes within Next.js — no separate server needed</div></div>
+        <div class="tech-row"><div class="tech-badge">Prisma ORM</div><div class="tech-role">Type-safe DB access — notices, events, admissions tables</div></div>
+        <div class="tech-row"><div class="tech-badge">PostgreSQL</div><div class="tech-role">Reliable relational DB — stores notices, applications, gallery metadata</div></div>
+        <div class="tech-row"><div class="tech-badge">NextAuth.js</div><div class="tech-role">Admin-only login — email/password, protected CMS routes</div></div>
+      </div>
+      <div class="card">
+        <div class="section-label">CMS &amp; Media</div>
+        <div class="tech-row"><div class="tech-badge">Sanity.io</div><div class="tech-role">Headless CMS — editors update text, news, notices without code</div></div>
+        <div class="tech-row"><div class="tech-badge">Cloudinary</div><div class="tech-role">Gallery image/video hosting — auto-optimisation, album CDN delivery</div></div>
+        <div class="tech-row"><div class="tech-badge">TipTap</div><div class="tech-role">Rich text editor for admin — notice body, news posts, About page</div></div>
+      </div>
+      <div class="card">
+        <div class="section-label">Hosting &amp; Forms</div>
+        <div class="tech-row"><div class="tech-badge">Vercel</div><div class="tech-role">Deploy frontend — global CDN, free tier, auto deploys on push</div></div>
+        <div class="tech-row"><div class="tech-badge">Supabase</div><div class="tech-role">Postgres DB + file storage — free tier sufficient for Phase 1</div></div>
+        <div class="tech-row"><div class="tech-badge">Resend / Email</div><div class="tech-role">Admission confirmation emails — reference number + acknowledgement</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:0">
+      <div class="section-label">Phase 1 Development Order</div>
+      <div class="pill-row">
+        <span class="badge badge-warn">1. Public pages + brand/colour setup</span>
+        <span class="badge badge-warn">2. Hindi ⇄ English i18n</span>
+        <span class="badge badge-warn">3. Live Notice Board</span>
+        <span class="badge badge-warn">4. Media Gallery</span>
+        <span class="badge badge-warn">5. Events Calendar</span>
+        <span class="badge badge-warn">6. Online Admission Form</span>
+        <span class="badge badge-warn">7. Admin Panel (CMS login)</span>
+        <span class="badge badge-warn">8. Mobile-First QA &amp; launch</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end body -->
+
+<script>
+function show(tab, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
