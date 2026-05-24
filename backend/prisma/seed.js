@@ -80,6 +80,42 @@ async function main() {
   }
 
   console.log(`Prepopulated ${totalCount} fee structure records (English & Hindi Mediums).`);
+
+  // 3. Prepopulate Default Faculty Records
+  await prisma.faculty.deleteMany({});
+  const dummyFaculties = [
+    {
+      name: "Dr. Sudha Ramachandran",
+      designation: "Principal & Eminent Scholar",
+      qualification: "Ph.D. in English Lit, 20+ Years Educational Leadership",
+      avatar: "👩‍🏫"
+    },
+    {
+      name: "Mr. Alok Tripathi",
+      designation: "HOD Science & Physics",
+      qualification: "M.Sc. Physics (B.Ed), Specialist in Practical Electromagnetics",
+      avatar: "👨‍🔬"
+    },
+    {
+      name: "Mrs. Shalini Verma",
+      designation: "HOD Mathematics",
+      qualification: "M.Sc. Mathematics, 12 Years CBSE Board Evaluation Experience",
+      avatar: "👩‍💻"
+    },
+    {
+      name: "Mr. Rajesh Mishra",
+      designation: "HOD Computer Science & AI",
+      qualification: "M.C.A, Specialist in Python Automation & Robotics Integration",
+      avatar: "👨‍💻"
+    }
+  ];
+
+  for (const f of dummyFaculties) {
+    await prisma.faculty.create({
+      data: f
+    });
+  }
+  console.log(`Prepopulated ${dummyFaculties.length} faculty members.`);
   console.log('Seeding completed successfully!');
 }
 

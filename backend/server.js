@@ -142,6 +142,11 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
+// 1b. Auth Verify API
+app.get('/api/auth/verify', authenticateToken, (req, res) => {
+  res.json({ valid: true, username: req.user.username, role: req.user.role });
+});
+
 // 2. Student Records APIs (Year-wise / Class-wise)
 app.get('/api/students', authenticateToken, async (req, res) => {
   const { academicYear, classLevel } = req.query;
@@ -320,7 +325,58 @@ app.delete('/api/media/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`KHIS fullstack backend listening on http://localhost:${PORT}`);
+// 9. Faculty Member CRUD APIs
+app.get('/api/faculties', async (req, res) => {
+  try {
+    const faculties = await prisma.faculty.findMany({
+      orderBy: { id: 'asc' }
+    });
+    res.json(faculties);
+  } catch (error) {
+    console.error('Fetch faculties error:', error);
+    res.status(500).json({ error: 'Failed to retrieve faculty members' });
+  }
 });
+
+app.post('/api/faculties', authenticateToken, async (req, res) => {
+  const { name, designation, qualification, avatar } = req.body;
+  if (!name || !designation || !qualification) {
+    return res.status(400).json({ error: 'Name, designation, and qualification are required' });
+  }
+
+  try {
+    const newFaculty = await prisma.faculty.create({
+      data: {
+        name,
+        designation,
+        qualification,
+        avatar: avatar || '🧑‍🏫'
+      }
+    });
+    res.status(201).json(newFaculty);
+  } catch (error) {
+    console.error('Add faculty error:', error);
+    res.status(500).json({ error: 'Failed to add faculty member' });
+  }
+});
+
+app.delete('/api/faculties/:id', authenticateToken, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await prisma.faculty.delete({ where: { id: parseInt(id) } });
+    res.json({ message: 'Faculty member deleted successfully' });
+  } catch (error) {
+    console.error('Delete faculty error:', error);
+    res.status(500).json({ error: 'Failed to delete faculty member' });
+  }
+});
+
+
+// Start Server
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`KHIS fullstack backend listening on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

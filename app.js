@@ -51,6 +51,27 @@ const translationDictionary = {
   nav_apply: { en: "Apply Now", hi: "आवेदन करें" },
   nav_admin: { en: "Admin Portal", hi: "एडमिन पोर्टल" },
 
+  // Admin Sidebar & Dashboard Overview translations
+  admin_overview_title: { en: "CMS Dashboard Overview", hi: "सीएमएस डैशबोर्ड अवलोकन" },
+  admin_stat_apps: { en: "Total Applications", hi: "कुल आवेदन" },
+  admin_stat_notices: { en: "Active Notices", hi: "सक्रिय सूचनाएं" },
+  admin_stat_events: { en: "Calendar Events", hi: "कैलेंडर कार्यक्रम" },
+  admin_stat_albums: { en: "Gallery Albums", hi: "गैलरी एलबम" },
+  admin_control_title: { en: "Admissions Open/Closed Control", hi: "प्रवेश खुला/बंद नियंत्रण" },
+  admin_control_desc: { en: "Toggle the master state of the admissions page and form wizard instantly.", hi: "तुरंत प्रवेश पृष्ठ और फॉर्म विज़ार्ड की मुख्य स्थिति को टॉगल करें।" },
+  admin_tier_title: { en: "Administrative Tier Selector (Simulated role switching)", hi: "प्रशासनिक स्तर चयनकर्ता (सिम्युलेटेड भूमिका स्विचिंग)" },
+  admin_tier_note: { en: "* Note: Content Editors are restricted from changing Site Settings or database toggles.", hi: "* नोट: सामग्री संपादकों को साइट सेटिंग्स या डेटाबेस टॉगल बदलने से प्रतिबंधित किया गया है।" },
+  admin_nav_overview: { en: "Overview", hi: "अवलोकन" },
+  admin_nav_notices: { en: "Manage Notices", hi: "सूचनाएं प्रबंधित करें" },
+  admin_nav_events: { en: "Manage Events", hi: "कार्यक्रम प्रबंधित करें" },
+  admin_nav_apps: { en: "Admissions Form", hi: "प्रवेश फॉर्म" },
+  admin_nav_students: { en: "Student Logs", hi: "छात्र लॉग" },
+  admin_nav_fees: { en: "Manage Fees", hi: "शुल्क प्रबंधित करें" },
+  admin_nav_media: { en: "Media Manager", hi: "मीडिया मैनेजर" },
+  admin_nav_faculty: { en: "Manage Faculty", hi: "संकाय प्रबंधित करें" },
+  admin_nav_settings: { en: "Site Settings", hi: "साइट सेटिंग्स" },
+  admin_nav_logout: { en: "Logout", hi: "लॉगआउट" },
+
   // Brand Headers
   school_name: { en: "Kanpur Heritage", hi: "कानपुर हेरिटेज" },
   school_sub: { en: "International School", hi: "इंटरनेशनल स्कूल" },
@@ -146,6 +167,46 @@ const translationDictionary = {
   act_robo_desc: { en: "Hands-on microcontroller coding, IoT automation sensors, and national science expo projects.", hi: "माइक्रोकंट्रोलर कोडिंग, आईओटी स्वचालन सेंसर और राष्ट्रीय विज्ञान प्रदर्शनी परियोजनाओं पर काम।" },
   act_arts_title: { en: "Performing Arts & Drama", hi: "प्रदर्शन कला और नाटक" },
   act_arts_desc: { en: "Classical Indian dance training, vocal music, instrumental orchestra, and theater groups.", hi: "शास्त्रीय भारतीय नृत्य प्रशिक्षण, गायन संगीत, वाद्य यंत्र ऑर्केस्ट्रा और थिएटर ग्रुप।" },
+
+  // Facilities View
+  fac_heading: { en: "School Campus Facilities", hi: "स्कूल कैंपस की सुविधाएं" },
+  fac_subheading: { en: "Explore the premium infrastructural design and dynamic learning zones at our state-of-the-art campus.", hi: "हमारे अत्याधुनिक परिसर में प्रीमियम ढांचागत डिजाइन और गतिशील शिक्षण क्षेत्रों का अन्वेषण करें।" },
+  fac_c1_title: { en: "Smart Classroom Blocks", hi: "स्मार्ट क्लासरूम ब्लॉक्स" },
+  fac_c1_desc: { en: "Fully air-conditioned classrooms equipped with high-definition digital smart boards, ergonomic seating, and multi-modal acoustic soundproofing.", hi: "उच्च परिभाषा वाले डिजिटल स्मार्ट बोर्ड, एर्गोनोमिक बैठने की व्यवस्था और बहु-आयामी ध्वनिरोधी प्रणाली से सुसज्जित पूर्णतः वातानुकूलित कक्षाएं।" },
+  fac_c2_title: { en: "Hi-Tech Laboratories", hi: "हाई-टेक प्रयोगशालाएं" },
+  fac_c2_desc: { en: "Advanced modular labs for Physics, Chemistry, Biology, and Robotics, housing professional grade apparatuses and certified safety control mechanisms.", hi: "भौतिकी, रसायन विज्ञान, जीव विज्ञान और रोबोटिक्स के लिए उन्नत मॉड्यूलर प्रयोगशालाएं, जिसमें व्यावसायिक ग्रेड के उपकरण और प्रमाणित सुरक्षा नियंत्रण प्रणालियां शामिल हैं।" },
+  fac_c3_title: { en: "Central Resource Library", hi: "केंद्रीय संसाधन पुस्तकालय" },
+  fac_c3_desc: { en: "Quiet, spacious research hubs indexing 5,000+ classical and scientific volumes, digital reading portals, and modern audio-visual reference bays.", hi: "शांत, विशाल अनुसंधान केंद्र जिसमें 5,000+ शास्त्रीय और वैज्ञानिक पुस्तकें, डिजिटल रीडिंग पोर्टल और आधुनिक ऑडियो-विजुअल संदर्भ सुविधाएं उपलब्ध हैं।" },
+  fac_c4_title: { en: "School Transport Fleet", hi: "स्कूल परिवहन बेड़ा" },
+  fac_c4_desc: { en: "A GPS-tracked school bus fleet traversing Kanpur, featuring surveillance camera integrations, speed governors, and trained clinical support staff on board.", hi: "कानपुर में चलने वाला जीपीएस-ट्रैक्ड स्कूल बस बेड़ा, जिसमें सुरक्षा कैमरा एकीकरण, गति नियंत्रण और प्रशिक्षित सहयोगी स्टाफ ऑन-बोर्ड शामिल हैं।" },
+
+  // Hostel View
+  hostel_heading: { en: "Hostel & Boarding Facilities", hi: "हॉस्टल और बोर्डिंग सुविधाएं" },
+  hostel_subheading: { en: "A warm, safe, and academically nourishing home away from home for local and international students.", hi: "स्थानीय और अंतर्राष्ट्रीय छात्रों के लिए घर से दूर एक गर्मजोशी से भरा, सुरक्षित और शैक्षणिक रूप से समृद्ध घर।" },
+  hostel_life_title: { en: "Residential Boarding Guidelines", hi: "आवासीय बोर्डिंग दिशानिर्देश" },
+  hostel_li1: {
+    en: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>Room Structure:</strong> Spacious, well-ventilated double and triple sharing rooms with dedicated study tables and personalized storage cupboards.",
+    hi: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>कमरे की संरचना:</strong> समर्पित अध्ययन मेज और व्यक्तिगत भंडारण अलमारी के साथ विशाल, अच्छी तरह हवादार डबल और ट्रिपल शेयरिंग कमरे।"
+  },
+  hostel_li2: {
+    en: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>Hygienic Mess & Nutrition:</strong> A highly hygienic mess kitchen serving fresh, nutritionally balanced vegetarian meals planned by child health experts.",
+    hi: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>स्वच्छ भोजन और पोषण:</strong> बाल स्वास्थ्य विशेषज्ञों द्वारा नियोजित ताजा, पोषण संबंधी संतुलित शाकाहारी भोजन परोसने वाला अत्यधिक स्वच्छ मेस रसोईघर।"
+  },
+  hostel_li3: {
+    en: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>Academic Prep Hours:</strong> Mandatory evening study hours monitored closely by resident tutors to support doubts and homework.",
+    hi: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>शैक्षणिक तैयारी का समय:</strong> शंकाओं और गृहकार्य में सहायता के लिए निवासी ट्यूटर्स द्वारा बारीकी से निगरानी की जाने वाली अनिवार्य शाम की अध्ययन अवधि।"
+  },
+  hostel_li4: {
+    en: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>24/7 Safety & Healthcare:</strong> Round-the-clock security surveillance, resident wardens, and an on-call physician with a dedicated medical clinic room.",
+    hi: "<i class=\"ti ti-check\" style=\"color:var(--success);\"></i> <strong>24/7 सुरक्षा और स्वास्थ्य सेवा:</strong> चौबीसों घंटे सुरक्षा निगरानी, निवासी वार्डन, और एक समर्पित चिकित्सा क्लिनिक कमरे के साथ ऑन-कॉल चिकित्सक।"
+  },
+  hostel_form_title: { en: "Connect with the Hostel Warden", hi: "छात्रावास वार्डन से संपर्क करें" },
+  hostel_form_sub: { en: "Have questions about seat availability, fees, or boarding schedules? Submit a query directly to the hostel administration office.", hi: "सीटों की उपलब्धता, फीस या बोर्डिंग शेड्यूल के बारे में प्रश्न हैं? सीधे छात्रावास प्रशासन कार्यालय को एक पूछताछ भेजें।" },
+  lbl_parent_name: { en: "Parent Full Name", hi: "अभिभावक का पूरा नाम" },
+  lbl_contact_no: { en: "Contact Number", hi: "संपर्क नंबर" },
+  lbl_class: { en: "Select Class Level", hi: "कक्षा स्तर का चयन करें" },
+  opt_choose_class: { en: "Choose class", hi: "कक्षा चुनें" },
+  btn_submit_query: { en: "Submit Warden Query", hi: "पूछताछ सबमिट करें" },
 
   // Gallery
   gallery_heading: { en: "School Media Gallery", hi: "स्कूल मीडिया गैलरी" },
@@ -292,6 +353,11 @@ function renderTranslations() {
   renderAchievements();
   renderEventsAgenda();
   renderCalendarComponent();
+
+  // If in admin dashboard view, sync dashboard labels as well
+  if (adminSession) {
+    renderAdminDashboardView();
+  }
 }
 
 // Toggle language
@@ -1415,8 +1481,13 @@ function handleWardenInquiry(event) {
   event.target.reset();
 }
 
-// ── ADMINISTRATIVE SYSTEM (ADMIN PANEL) ──
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:3000/api'
+  : '/api';
+
+const MEDIA_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:3000'
+  : '';
 
 function getAuthHeader() {
   const token = sessionStorage.getItem('khis_token');
@@ -1468,10 +1539,26 @@ function handleAdminLogout() {
   window.location.hash = '#/home';
 }
 
-function renderAdminDashboardView() {
+async function renderAdminDashboardView() {
   if (!adminSession) {
     document.getElementById('adminAuthScreen').style.display = 'block';
     document.getElementById('adminDashboardLayout').style.display = 'none';
+    return;
+  }
+
+  // Real-time JWT Token Verification (demands credentials if token expired/invalid)
+  try {
+    const res = await fetch(`${API_BASE}/auth/verify`, {
+      headers: getAuthHeader()
+    });
+    if (!res.ok) {
+      console.warn("Session expired or token invalid. Clearing session...");
+      handleAdminLogout();
+      return;
+    }
+  } catch (error) {
+    console.error("Failed to verify session token with server:", error);
+    handleAdminLogout();
     return;
   }
 
@@ -1479,8 +1566,13 @@ function renderAdminDashboardView() {
   document.getElementById('adminDashboardLayout').style.display = 'grid';
 
   // Sync profile details
-  document.getElementById('adminUserDisplayName').innerText = adminRole === 'Super Admin' ? 'Super Administrator' : 'Content Editor';
-  document.getElementById('adminUserDisplayRole').innerText = adminRole;
+  if (currentLocale === 'hi') {
+    document.getElementById('adminUserDisplayName').innerText = adminRole === 'Super Admin' ? 'मुख्य प्रशासक' : 'सामग्री संपादक';
+    document.getElementById('adminUserDisplayRole').innerText = adminRole === 'Super Admin' ? 'सुपर एडमिन' : 'कंटेंट एडिटर';
+  } else {
+    document.getElementById('adminUserDisplayName').innerText = adminRole === 'Super Admin' ? 'Super Administrator' : 'Content Editor';
+    document.getElementById('adminUserDisplayRole').innerText = adminRole;
+  }
 
   // Sync general statistics counters
   document.getElementById('statAppCount').innerText = state.applications.length;
@@ -1531,6 +1623,8 @@ function switchAdminSubView(viewId, sidebarBtn) {
     loadAdminFees();
   } else if (viewId === 'admin-media') {
     loadAdminMedia();
+  } else if (viewId === 'admin-faculty') {
+    loadAdminFaculties();
   }
 
   // Guard settings form based on role
@@ -2161,6 +2255,192 @@ function changeAdminFeeMedium(medium) {
   loadAdminFees();
 }
 
+async function loadPublicGalleryDbMedia() {
+  try {
+    const res = await fetch(`${API_BASE}/media`);
+    const media = await res.json();
+    if (!res.ok) return;
+
+    // Filter out previously injected dynamic database albums from state.albums to avoid duplicates
+    state.albums = state.albums.filter(al => !al.id.startsWith('db-'));
+
+    // Filter and group dynamic media items from Neon tech PostgreSQL
+    const sportsImages = media.filter(m => m.category === 'gallery-sports');
+    const culturalImages = media.filter(m => m.category === 'gallery-cultural');
+    const exhibitionImages = media.filter(m => m.category === 'gallery-exhibitions');
+
+    if (sportsImages.length > 0) {
+      state.albums.push({
+        id: "db-sports",
+        year: "2026",
+        category: "Sports",
+        title_en: "Live Inter-Sports Day Updates",
+        title_hi: "लाइव इंटर-स्पोर्ट्स डे अपडेट",
+        coverImage: sportsImages[0].url.startsWith('/') ? MEDIA_BASE + sportsImages[0].url : sportsImages[0].url,
+        description_en: "Recent track, field, and athletics photos uploaded dynamically by administrators.",
+        description_hi: "प्रशासकों द्वारा गतिशील रूप से अपलोड की गई हालिया ट्रैक, फील्ड और एथलेटिक्स तस्वीरें।",
+        images: sportsImages.map(img => ({
+          url: img.url.startsWith('/') ? MEDIA_BASE + img.url : img.url,
+          caption_en: img.title || 'Live Sports Capture',
+          caption_hi: img.title || 'लाइव स्पोर्ट्स कैप्चर'
+        }))
+      });
+    }
+
+    if (culturalImages.length > 0) {
+      state.albums.push({
+        id: "db-cultural",
+        year: "2026",
+        category: "Cultural",
+        title_en: "Annual Function Live Highlights",
+        title_hi: "वार्षिक समारोह लाइव मुख्य विशेषताएं",
+        coverImage: culturalImages[0].url.startsWith('/') ? MEDIA_BASE + culturalImages[0].url : culturalImages[0].url,
+        description_en: "Live stage performances, classical dance, and annual day moments uploaded directly.",
+        description_hi: "लाइव स्टेज प्रदर्शन, शास्त्रीय नृत्य और वार्षिक दिवस के क्षण सीधे अपलोड किए गए।",
+        images: culturalImages.map(img => ({
+          url: img.url.startsWith('/') ? MEDIA_BASE + img.url : img.url,
+          caption_en: img.title || 'Annual Function Capture',
+          caption_hi: img.title || 'वार्षिक समारोह कैप्चर'
+        }))
+      });
+    }
+
+    if (exhibitionImages.length > 0) {
+      state.albums.push({
+        id: "db-exhibitions",
+        year: "2026",
+        category: "Exhibitions",
+        title_en: "Exhibitions & Projects Live",
+        title_hi: "प्रदर्शनियां और प्रोजेक्ट्स लाइव",
+        coverImage: exhibitionImages[0].url.startsWith('/') ? MEDIA_BASE + exhibitionImages[0].url : exhibitionImages[0].url,
+        description_en: "Live science expo and academic models showcase uploaded in real-time.",
+        description_hi: "वास्तविक समय में अपलोड किए गए लाइव विज्ञान एक्सपो और शैक्षणिक मॉडल का प्रदर्शन।",
+        images: exhibitionImages.map(img => ({
+          url: img.url.startsWith('/') ? MEDIA_BASE + img.url : img.url,
+          caption_en: img.title || 'Exhibition Showcase',
+          caption_hi: img.title || 'प्रदर्शनी लाइव'
+        }))
+      });
+    }
+
+    // Dynamic handling for custom gallery categories
+    const defaultGalleryCats = ['gallery-sports', 'gallery-cultural', 'gallery-exhibitions'];
+    const customCategories = JSON.parse(localStorage.getItem('khis_custom_media_categories')) || [];
+    
+    // Find all unique custom gallery categories in the fetched media
+    const allGalleryCats = [...new Set(media.map(m => m.category).filter(cat => cat.startsWith('gallery-') && !defaultGalleryCats.includes(cat)))];
+
+    allGalleryCats.forEach(catValue => {
+      const catImages = media.filter(m => m.category === catValue);
+      if (catImages.length > 0) {
+        const matchedCustom = customCategories.find(c => c.value === catValue);
+        const catLabel = matchedCustom ? matchedCustom.label : catValue.replace('gallery-', '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+        state.albums.push({
+          id: `db-${catValue}`,
+          year: "2026",
+          category: catLabel,
+          title_en: `${catLabel} Moments`,
+          title_hi: `${catLabel} के क्षण`,
+          coverImage: catImages[0].url.startsWith('/') ? MEDIA_BASE + catImages[0].url : catImages[0].url,
+          description_en: `Photos from ${catLabel} events uploaded dynamically by administrators.`,
+          description_hi: `प्रशासकों द्वारा गतिशील रूप से अपलोड की गई ${catLabel} कार्यक्रमों की तस्वीरें।`,
+          images: catImages.map(img => ({
+            url: img.url.startsWith('/') ? MEDIA_BASE + img.url : img.url,
+            caption_en: img.title || `${catLabel} Capture`,
+            caption_hi: img.title || `${catLabel} कैप्चर`
+          }))
+        });
+      }
+    });
+
+    // Call the core albums grid rendering
+    renderGalleryAlbums();
+  } catch (error) {
+    console.error('Error grouping database gallery albums:', error);
+  }
+}
+
+async function loadPublicVideos() {
+  const track = document.getElementById('ytCarouselTrack');
+  if (!track) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/media?category=video-gallery`);
+    const media = await res.json();
+    if (!res.ok) return;
+
+    // Standard static videos from mockup
+    const staticVideos = [
+      {
+        url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        cover: 'assets/campus_cover.jpg',
+        title: 'Official School Campus Tour',
+        desc: 'Explore our top-tier academic blocks, hostels, and learning zones.'
+      },
+      {
+        url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        cover: 'assets/hostel.jpg',
+        title: 'Premium Hostel & Boarding Tour',
+        desc: 'A look inside our safe, comfortable, and collaborative student housing.'
+      },
+      {
+        url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        cover: 'assets/bus.jpg',
+        title: 'GPS Smart Bus System',
+        desc: 'Discover our modern, secured, and comfortable bus fleet.'
+      },
+      {
+        url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        cover: 'assets/labs.jpg',
+        title: 'Advanced Computer & STEM Labs',
+        desc: 'Witness student coding, experimentations, and IoT robotics zones.'
+      }
+    ];
+
+    let html = '';
+    
+    // Render dynamic videos from database first
+    media.forEach(m => {
+      const isDirectVideo = m.url.endsWith('.mp4') || m.url.endsWith('.webm') || m.url.endsWith('.ogg');
+      const videoUrl = m.url.startsWith('/') ? MEDIA_BASE + m.url : m.url;
+      const isImage = !isDirectVideo;
+      const coverUrl = isImage ? videoUrl : 'assets/campus_cover.jpg';
+
+      html += `
+        <div class="yt-card" onclick="openYtVideoModal('${videoUrl}')">
+          <div class="yt-thumb" style="background-image: url('${coverUrl}');">
+            <div class="yt-play-btn"><i class="ti ti-player-play-filled"></i></div>
+          </div>
+          <div class="yt-caption">
+            <h4>${m.title || 'Live Campus Video'}</h4>
+            <p>${m.title ? 'Dynamic walk-through uploaded by administrator.' : 'Live campus highlight.'}</p>
+          </div>
+        </div>
+      `;
+    });
+
+    // Render standard YouTube videos
+    staticVideos.forEach(v => {
+      html += `
+        <div class="yt-card" onclick="openYtVideoModal('${v.url}')">
+          <div class="yt-thumb" style="background-image: url('${v.cover}');">
+            <div class="yt-play-btn"><i class="ti ti-player-play-filled"></i></div>
+          </div>
+          <div class="yt-caption">
+            <h4>${v.title}</h4>
+            <p>${v.desc}</p>
+          </div>
+        </div>
+      `;
+    });
+
+    track.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading public videos in carousel:', error);
+  }
+}
+
 async function loadAdminStudents() {
   const tbody = document.getElementById('adminStudentsTableBody');
   if (!tbody) return;
@@ -2273,8 +2553,8 @@ async function loadAdminMedia() {
     media.forEach(m => {
       const isVideo = m.url.endsWith('.mp4') || m.url.endsWith('.webm') || m.url.endsWith('.ogg');
       const mediaTag = isVideo 
-        ? `<video src="${m.url.startsWith('/') ? 'http://localhost:3000' + m.url : m.url}" style="width:100%; height:110px; object-fit:cover; border-radius:6px;" muted autoplay loop></video>`
-        : `<img src="${m.url.startsWith('/') ? 'http://localhost:3000' + m.url : m.url}" style="width:100%; height:110px; object-fit:cover; border-radius:6px;">`;
+        ? `<video src="${m.url.startsWith('/') ? MEDIA_BASE + m.url : m.url}" style="width:100%; height:110px; object-fit:cover; border-radius:6px;" muted autoplay loop></video>`
+        : `<img src="${m.url.startsWith('/') ? MEDIA_BASE + m.url : m.url}" style="width:100%; height:110px; object-fit:cover; border-radius:6px;">`;
 
       html += `
         <div class="card" style="padding:10px; display:flex; flex-direction:column; gap:8px;">
@@ -2292,6 +2572,63 @@ async function loadAdminMedia() {
     console.error('Error loading media:', error);
     grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--danger);">Connection error. Make sure server is running.</div>`;
   }
+}
+
+function populateMediaCategories() {
+  const mediaCategorySelect = document.getElementById('mediaCategory');
+  const mediaFilterCategorySelect = document.getElementById('mediaFilterCategory');
+  
+  if (!mediaCategorySelect || !mediaFilterCategorySelect) return;
+
+  const defaultCategories = [
+    { value: "gallery-cultural", label: "School Media Gallery (Annual Function / Cultural)" },
+    { value: "gallery-sports", label: "School Media Gallery (Inter Sports Day / Sports)" },
+    { value: "gallery-exhibitions", label: "School Media Gallery (Exhibitions)" },
+    { value: "video-gallery", label: "TV & Video Gallery (Videos / Highlights)" },
+    { value: "slideshow", label: "Hero Slideshow" },
+    { value: "facilities", label: "School Facilities" },
+    { value: "hostel", label: "Hostel Facilities" }
+  ];
+
+  const customCategories = JSON.parse(localStorage.getItem('khis_custom_media_categories')) || [];
+  const allCategories = [...defaultCategories, ...customCategories];
+
+  // Populate upload select
+  let uploadHtml = '';
+  allCategories.forEach((cat, index) => {
+    uploadHtml += `<option value="${cat.value}" ${index === 0 ? 'selected' : ''}>${cat.label}</option>`;
+  });
+  mediaCategorySelect.innerHTML = uploadHtml;
+
+  // Populate filter select
+  let filterHtml = '<option value="all" selected>All Categories</option>';
+  allCategories.forEach(cat => {
+    filterHtml += `<option value="${cat.value}">${cat.label}</option>`;
+  });
+  mediaFilterCategorySelect.innerHTML = filterHtml;
+}
+
+function promptAddNewCategory() {
+  const catName = prompt("Enter the name of the new media category:");
+  if (!catName || catName.trim() === '') return;
+
+  const trimmedName = catName.trim();
+  // Create a safe value slug (e.g. "gallery-independence-day")
+  const catValue = "gallery-" + trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+  const customCategories = JSON.parse(localStorage.getItem('khis_custom_media_categories')) || [];
+  
+  // Prevent duplicate values
+  if (customCategories.some(c => c.value === catValue)) {
+    alert("This category already exists!");
+    return;
+  }
+
+  customCategories.push({ value: catValue, label: trimmedName });
+  localStorage.setItem('khis_custom_media_categories', JSON.stringify(customCategories));
+
+  populateMediaCategories();
+  alert(`Category "${trimmedName}" has been added successfully!`);
 }
 
 async function handleMediaUpload(event) {
@@ -2335,6 +2672,8 @@ async function handleMediaUpload(event) {
     alert("Media asset uploaded successfully!");
     document.getElementById('adminMediaUploadForm').reset();
     loadAdminMedia();
+    loadPublicGalleryDbMedia();
+    loadPublicVideos();
   } catch (error) {
     console.error('Error uploading media:', error);
     alert("Connection error. Failed to upload.");
@@ -2363,9 +2702,154 @@ async function deleteMediaAsset(id) {
 
     alert("Media asset deleted successfully.");
     loadAdminMedia();
+    loadPublicGalleryDbMedia();
+    loadPublicVideos();
   } catch (error) {
     console.error('Error deleting media:', error);
     alert("Connection error. Failed to delete.");
+  }
+}
+
+async function loadPublicFaculties() {
+  const grid = document.getElementById('publicFacultiesGrid');
+  if (!grid) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/faculties`);
+    const faculties = await res.json();
+    if (!res.ok) {
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--danger);">Failed to load faculties list.</div>`;
+      return;
+    }
+
+    if (faculties.length === 0) {
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--slate);">No faculty members listed.</div>`;
+      return;
+    }
+
+    let html = '';
+    faculties.forEach(f => {
+      let bgClass = 'var(--orange)';
+      if (f.avatar === '👨‍🔬') bgClass = 'var(--amber)';
+      if (f.avatar === '👩‍💻') bgClass = 'var(--sunburst)';
+      if (f.avatar === '👨‍💻') bgClass = 'var(--night)';
+
+      html += `
+        <div class="fac-card" style="background:var(--offwhite); border:1px solid var(--border); padding:16px; border-radius:var(--radius); text-align:center; transition:var(--transition);">
+          <div style="width:90px; height:90px; border-radius:50%; background:${bgClass}; color:var(--white); display:flex; align-items:center; justify-content:center; font-size:40px; margin:0 auto 12px;">${f.avatar || '🧑‍🏫'}</div>
+          <h4 style="font-size:14.5px; font-weight:800; margin-bottom:2px;">${f.name}</h4>
+          <p style="font-size:11.5px; color:var(--orange); font-weight:700; margin-bottom:8px;">${f.designation}</p>
+          <p style="font-size:11px; color:var(--slate);">${f.qualification}</p>
+        </div>
+      `;
+    });
+    grid.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading faculties list:', error);
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:20px; color:var(--danger);">Connection error. Failed to load faculty roster.</div>`;
+  }
+}
+
+async function loadAdminFaculties() {
+  const tbody = document.getElementById('adminFacultyTableBody');
+  if (!tbody) return;
+
+  tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--slate);">Loading roster records...</td></tr>`;
+
+  try {
+    const res = await fetch(`${API_BASE}/faculties`);
+    const faculties = await res.json();
+    if (!res.ok) {
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--danger);">Failed to retrieve faculty records.</td></tr>`;
+      return;
+    }
+
+    if (faculties.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--slate);">No faculty members listed in the registry.</td></tr>`;
+      return;
+    }
+
+    let html = '';
+    faculties.forEach(f => {
+      html += `
+        <tr>
+          <td style="font-size:24px; text-align:center; vertical-align: middle;">${f.avatar || '🧑‍🏫'}</td>
+          <td style="font-weight:700; vertical-align: middle;">${f.name}</td>
+          <td style="vertical-align: middle;">${f.designation}</td>
+          <td style="vertical-align: middle;">${f.qualification}</td>
+          <td style="text-align:center; vertical-align: middle;">
+            <button class="btn btn-secondary" style="padding:4px 8px; font-size:11px; color:var(--danger); border-color:transparent;" onclick="deleteFacultyMember(${f.id})"><i class="ti ti-trash"></i> Delete</button>
+          </td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading admin faculties:', error);
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--danger);">Connection error. Failed to load roster.</td></tr>`;
+  }
+}
+
+async function handleAdminAddFaculty(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('facName').value.trim();
+  const designation = document.getElementById('facDesignation').value.trim();
+  const qualification = document.getElementById('facQualification').value.trim();
+  const avatar = document.getElementById('facAvatar').value;
+
+  if (!name || !designation || !qualification) {
+    alert('Please fill in all mandatory fields.');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/faculties`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify({ name, designation, qualification, avatar })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || 'Failed to add faculty member.');
+      return;
+    }
+
+    alert(`Faculty member "${data.name}" added successfully to the registry!`);
+    document.getElementById('adminAddFacultyForm').reset();
+    loadAdminFaculties();
+    loadPublicFaculties();
+  } catch (error) {
+    console.error('Error adding faculty member:', error);
+    alert('Connection error. Failed to add faculty member.');
+  }
+}
+
+async function deleteFacultyMember(id) {
+  if (!confirm('Are you sure you want to permanently delete this faculty member?')) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/faculties/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeader()
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || 'Failed to delete faculty member.');
+      return;
+    }
+
+    alert('Faculty member deleted successfully.');
+    loadAdminFaculties();
+    loadPublicFaculties();
+  } catch (error) {
+    console.error('Error deleting faculty member:', error);
+    alert('Connection error. Failed to delete.');
   }
 }
 
@@ -2479,6 +2963,14 @@ window.changeAdminFeeMedium = changeAdminFeeMedium;
 window.openAddStudentModal = openAddStudentModal;
 window.closeAddStudentModal = closeAddStudentModal;
 window.handleSaveNewStudent = handleSaveNewStudent;
+window.loadPublicGalleryDbMedia = loadPublicGalleryDbMedia;
+window.loadPublicVideos = loadPublicVideos;
+window.loadPublicFaculties = loadPublicFaculties;
+window.loadAdminFaculties = loadAdminFaculties;
+window.handleAdminAddFaculty = handleAdminAddFaculty;
+window.deleteFacultyMember = deleteFacultyMember;
+window.populateMediaCategories = populateMediaCategories;
+window.promptAddNewCategory = promptAddNewCategory;
 
 // ── INITIAL LAUNCH ON WINDOW LOAD ──
 window.addEventListener('DOMContentLoaded', () => {
@@ -2505,40 +2997,46 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Load public fee table dynamically
   loadPublicFees();
+
+  // Populate dynamic media categories block
+  populateMediaCategories();
   
-  // Add mobile Life@S.A.V.E dropdown toggle click listener
-  const dropdownLifeTrigger = document.getElementById('dropdownLifeTrigger');
-  if (dropdownLifeTrigger) {
-    dropdownLifeTrigger.addEventListener('click', (e) => {
+  // Load dynamic database media for gallery and videos
+  loadPublicGalleryDbMedia();
+  loadPublicVideos();
+  loadPublicFaculties();
+  
+  // Add dropdown toggle click listeners for both desktop and mobile
+  const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+  dropdownTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
       e.preventDefault();
-      const parentDropdown = dropdownLifeTrigger.closest('.nav-item-dropdown');
+      e.stopPropagation();
+      const parentDropdown = trigger.closest('.nav-item-dropdown');
       if (parentDropdown) {
-        parentDropdown.classList.toggle('active');
+        const isOpen = parentDropdown.classList.contains('active');
+        // Close all other dropdowns
+        document.querySelectorAll('.nav-item-dropdown').forEach(d => {
+          if (d !== parentDropdown) {
+            d.classList.remove('active');
+          }
+        });
+        if (isOpen) {
+          parentDropdown.classList.remove('active');
+        } else {
+          parentDropdown.classList.add('active');
+        }
       }
     });
-  }
+  });
 
-  // Add mobile About Us dropdown toggle click listener
-  const dropdownAboutTrigger = document.getElementById('dropdownAboutTrigger');
-  if (dropdownAboutTrigger) {
-    dropdownAboutTrigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const parentDropdown = dropdownAboutTrigger.closest('.nav-item-dropdown');
-      if (parentDropdown) {
-        parentDropdown.classList.toggle('active');
-      }
-    });
-  }
-
-  // Add mobile Academics dropdown toggle click listener
-  const dropdownAcademicsTrigger = document.getElementById('dropdownAcademicsTrigger');
-  if (dropdownAcademicsTrigger) {
-    dropdownAcademicsTrigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const parentDropdown = dropdownAcademicsTrigger.closest('.nav-item-dropdown');
-      if (parentDropdown) {
-        parentDropdown.classList.toggle('active');
-      }
-    });
-  }
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item-dropdown')) {
+      document.querySelectorAll('.nav-item-dropdown').forEach(d => {
+        d.classList.remove('active');
+      });
+    }
+  });
 });
+

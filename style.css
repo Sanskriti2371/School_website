@@ -2434,10 +2434,60 @@ input:checked + .slider:before {
     grid-template-columns: repeat(2, 1fr);
   }
   .admin-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* Robust Mobile Grid Stacking Override */
+  .mobile-stack-columns {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Admin Sidebar Mobile Header conversion */
+  .admin-sidebar {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: center !important;
+    gap: 15px !important;
+    padding: 12px 15px !important;
+  }
+
+  .admin-user-profile {
+    display: none !important;
+  }
+
+  .admin-sidebar-nav {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 8px !important;
+    padding-bottom: 4px !important;
+    scrollbar-width: none; /* Hide scrollbar for clean UI */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-sidebar-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .admin-sidebar-btn {
+    white-space: nowrap !important;
+    padding: 8px 14px !important;
+    font-size: 12.5px !important;
+  }
+
+  .admin-logout-btn {
+    margin-top: 0 !important;
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  .medium-tabs-admin {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
   }
 }
 
@@ -2510,6 +2560,11 @@ input:checked + .slider:before {
   .form-grid {
     grid-template-columns: 1fr;
   }
+
+  .mobile-stack-columns > .hero-frame {
+    max-width: 180px !important;
+    margin: 0 auto 15px !important;
+  }
 }
 
 @media (max-width: 576px) {
@@ -2549,7 +2604,7 @@ input:checked + .slider:before {
   }
 
   .admin-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -3017,7 +3072,8 @@ input:checked + .slider:before {
   border-color: transparent transparent var(--white) transparent;
 }
 
-.nav-item-dropdown:hover .nav-dropdown-content {
+.nav-item-dropdown:hover .nav-dropdown-content,
+.nav-item-dropdown.active .nav-dropdown-content {
   display: block;
 }
 
@@ -3149,5 +3205,44 @@ input:checked + .slider:before {
 [data-theme="dark"] .fac-card {
   background: rgba(255, 255, 255, 0.03) !important;
   border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Syllabus Download Card Styles */
+.syllabus-card {
+  text-decoration: none !important;
+  background-color: var(--white) !important;
+  border: 1px solid var(--border) !important;
+  transition: var(--transition);
+}
+
+.syllabus-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--orange) !important;
+  box-shadow: 0 4px 12px rgba(232, 112, 10, 0.1);
+}
+
+.syllabus-card h4 {
+  color: var(--night) !important;
+}
+
+.syllabus-card p {
+  color: var(--slate) !important;
+}
+
+[data-theme="dark"] .syllabus-card {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .syllabus-card h4 {
+  color: #ebebfa !important;
+}
+
+[data-theme="dark"] .syllabus-card p {
+  color: #c5c5d9 !important;
+}
+
+[data-theme="dark"] .syllabus-card:hover {
+  border-color: var(--sunburst) !important;
 }
 
