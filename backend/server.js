@@ -19,9 +19,13 @@ app.use(cors());
 app.use(express.json());
 
 // Set up public upload directories for static local fallback serving
-const uploadsDir = path.join(__dirname, 'public', 'uploads');
+const uploadsDir = process.env.VERCEL ? '/tmp' : path.join(__dirname, 'public', 'uploads');
 if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+  try {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  } catch (err) {
+    console.warn("Expected directory create warning on Vercel:", err.message);
+  }
 }
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(uploadsDir));

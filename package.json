@@ -1,0 +1,21 @@
+{
+  "name": "school-website-root",
+  "version": "1.0.0",
+  "description": "Kanpur Heritage International School unified Vercel deployment root",
+  "scripts": {
+    "build": "prisma generate --schema=backend/prisma/schema.prisma"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.12.1"
+  }
+}
